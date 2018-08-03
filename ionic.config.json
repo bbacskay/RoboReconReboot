@@ -1,7 +1,5 @@
 {
   "name": "RoboReconReboot",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "ionic-angular"
+  "integrations": {},
+  "type": "angular"
 }
