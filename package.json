@@ -7,9 +7,7 @@
   "scripts": {
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
-    "lint": "ionic-app-scripts lint",
-    "ionic:build": "ionic-app-scripts build",
-    "ionic:serve": "ionic-app-scripts serve"
+    "lint": "ionic-app-scripts lint"
   },
   "dependencies": {
     "@angular/animations": "5.2.10",
@@ -32,7 +30,7 @@
     "zone.js": "0.8.26"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "3.1.9",
+    "@ionic/app-scripts": "3.1.11",
     "typescript": "~2.6.2"
   },
   "description": "An Ionic project"
