@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Team } from '../interfaces/team';
+import { TeamDataService } from '../services/team-data.service';
 
 @Component({
   selector: 'app-teammanager',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeammanagerPage implements OnInit {
 
-  constructor() { }
+  private inTeam: Team;
+
+  constructor(public teamDataService:TeamDataService) { 
+    this.inTeam = {
+      no: 0,
+      name: ''
+    }
+  }
 
   ngOnInit() {
+    //this.inTeam = this.teamDataService.teams[0];
+  }
+
+  public saveTeam(){
+    this.teamDataService.addTeam(this.inTeam);
   }
 
 }
