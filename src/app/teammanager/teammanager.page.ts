@@ -22,6 +22,15 @@ export class TeammanagerPage implements OnInit {
     //this.inTeam = this.teamDataService.teams[0];
   }
 
+  public deleteTeam(team:Team){
+    this.teamDataService.deleteTeam(team);
+  }
+
+  public editTeam(team:Team){
+    this.inTeam.no = team.no;
+    this.inTeam.name = team.name;
+  }
+
   public saveTeam(){
     this.teamDataService.addTeam(this.inTeam);
   }

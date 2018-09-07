@@ -7,42 +7,37 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-scroll>
-          <ion-card *ngFor="let team of teamDataService.teams">
-            <ion-item>
-              <b>#{{team.no}}</b> &nbsp;{{team.name}}
-              <ion-buttons slot="end">
-                <ion-button>
-                  <ion-icon slot="icon-only" name="create"></ion-icon>
-                </ion-button>
-                <ion-button>
-                  <ion-icon slot="icon-only" name="trash"></ion-icon>
-                </ion-button>
-              </ion-buttons>
-            </ion-item>
-          </ion-card>
-        </ion-scroll>
-      </ion-col>
-      <ion-col>
-        <form #teamEditForm="ngForm">
-          <ion-item>
-            <ion-label>Team number</ion-label>
-            <ion-input name="TeamNo" type="number" [(ngModel)]="inTeam.no" placeholder="####" minlength="4" maxlength="4" required="true"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label>Team name</ion-label>
-            <ion-input name="TeamName" type="text" [(ngModel)]="inTeam.name" placeholder="Team name" required="true"></ion-input>
-          </ion-item>
-          <ion-button expand="full" (click)="saveTeam()" [disabled]="!teamEditForm.form.valid">
-            <ion-icon slot="icon-only" name="add-circle"></ion-icon>
-            Add
+<div wrap style="display: flex; flex: 1">
+  <ion-content padding style="flex: 1" [scrollY]="true" >
+    <ion-card *ngFor="let team of teamDataService.teams">
+      <ion-item>
+        <b>#{{team.no}}</b> &nbsp;{{team.name}}
+        <ion-buttons slot="end">
+          <ion-button (click)="editTeam(team)">
+            <ion-icon slot="icon-only" name="create"></ion-icon>
           </ion-button>
-        </form>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-content>
+          <ion-button (click)="deleteTeam(team)">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </ion-card>
+  </ion-content>
+
+  <ion-content padding style="flex: 1" >
+    <form #teamEditForm="ngForm">
+      <ion-item>
+        <ion-label>Team number</ion-label>
+        <ion-input name="TeamNo" type="number" [(ngModel)]="inTeam.no" placeholder="####" minlength="4" maxlength="4" required="true"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Team name</ion-label>
+        <ion-input name="TeamName" type="text" [(ngModel)]="inTeam.name" placeholder="Team name" required="true"></ion-input>
+      </ion-item>
+      <ion-button expand="full" (click)="saveTeam()" [disabled]="!teamEditForm.form.valid">
+        <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+        Add
+      </ion-button>
+    </form>
+  </ion-content>
+</div>

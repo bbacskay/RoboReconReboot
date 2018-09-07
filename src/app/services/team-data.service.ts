@@ -21,8 +21,22 @@ export class TeamDataService {
       {
         no: 1234,
         name: 'Team1234'
+      },
+      {
+        no: 1235,
+        name: 'Team1235'
       }
     ];
+
+    for (let index = 2100; index < 2150; index++) {
+      let nTeam = <Team>{};
+
+      nTeam.no = index;
+      nTeam.name = 'Team' + index;
+
+      this.teams.push(nTeam);
+      
+    }
 
     this.loaded = true;
   }
@@ -37,7 +51,7 @@ export class TeamDataService {
   }
 
   public deleteTeam(team:Team) : void {
-
+    console.log('Delete team: ' + team.no + ' ' + team.name);
   }
 
 }
