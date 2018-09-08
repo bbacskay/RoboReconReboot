@@ -32,7 +32,7 @@ export class TeammanagerPage implements OnInit {
   }
 
   public saveTeam(){
-    this.teamDataService.addTeam(this.inTeam);
+    this.teamDataService.saveTeam(this.inTeam);
   }
 
 }
