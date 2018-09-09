@@ -4,6 +4,10 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
+import * as firebase from 'firebase/app';
+import { firebaseConfig } from './config/firebaseconfig';
+
+
 import { TeamDataService } from './services/team-data.service';
 
 @Component({
@@ -55,6 +59,9 @@ export class AppComponent {
       
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      firebase.initializeApp(firebaseConfig);
+
     });
   }
 }

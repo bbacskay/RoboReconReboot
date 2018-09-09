@@ -1,0 +1,10 @@
+// Initialize Firebase
+export const firebaseConfig = {
+    /* Team xxx */
+    apiKey: "<YOUR_FIREBASE_APIKEY>",
+    authDomain: "<YOUR_APPDOMAIN>.firebaseapp.com",
+    databaseURL: "https://<YOUR_DB_URL>.firebaseio.com",
+    projectId: "<YOUR_PROJECT_ID>",
+    storageBucket: "<YOUR_STORAGE_BUCKET>.appspot.com",
+    messagingSenderId: "<YOUR_MESSAGINGSENDERID>"
+  };
