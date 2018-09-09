@@ -9,23 +9,23 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: './home/home.module#HomePageModule'
+    loadChildren: './pages/home/home.module#HomePageModule'
   },
   {
     path: 'matchscouting',
-    loadChildren: './matchscouting/matchscouting.module#MatchscoutingPageModule'
+    loadChildren: './pages/matchscouting/matchscouting.module#MatchscoutingPageModule'
   },
   { 
     path: 'configuration',
-    loadChildren: './configuration/configuration.module#ConfigurationPageModule'
+    loadChildren: './pages/configuration/configuration.module#ConfigurationPageModule'
   },
   {
     path: 'scoutmanager',
-    loadChildren: './scoutmanager/scoutmanager.module#ScoutmanagerPageModule'
+    loadChildren: './pages/scoutmanager/scoutmanager.module#ScoutmanagerPageModule'
   },
   {
     path: 'teammanager',
-    loadChildren: './teammanager/teammanager.module#TeammanagerPageModule'
+    loadChildren: './pages/teammanager/teammanager.module#TeammanagerPageModule'
   }
 ];
 
