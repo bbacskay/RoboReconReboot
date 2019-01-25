@@ -14,7 +14,8 @@ export class TeammanagerPage implements OnInit {
   constructor(public teamDataService:TeamDataService) { 
     this.inTeam = {
       no: 0,
-      name: ''
+      name: '',
+      comment: ''
     }
   }
 
