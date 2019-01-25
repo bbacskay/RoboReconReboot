@@ -34,6 +34,10 @@
         <ion-label>Team name</ion-label>
         <ion-input name="TeamName" type="text" [(ngModel)]="inTeam.name" placeholder="Team name" required="true"></ion-input>
       </ion-item>
+      <ion-item>
+        <ion-label>Team comments</ion-label>
+        <ion-textarea name="TeamComments" txpe="text" [(ngModel)]="inTeam.comment"></ion-textarea>
+      </ion-item>
       <ion-button expand="full" (click)="saveTeam()" [disabled]="!teamEditForm.form.valid">
         <ion-icon slot="icon-only" name="add-circle"></ion-icon>
         Add
