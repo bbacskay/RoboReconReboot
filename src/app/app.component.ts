@@ -73,7 +73,7 @@ export class AppComponent {
 
       this.authenticationService.authenticationState.subscribe(state => {
         if (state) {
-          this.router.navigate(['private', 'teammanager']);
+          this.router.navigate(['private', 'matchscouting']);
           this.appPages = privatePages;
         } else {
           this.router.navigate(['home']);
