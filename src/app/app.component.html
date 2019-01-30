@@ -15,6 +15,9 @@
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
+          <ion-button *ngIf="isAuthenticated()" (click)="logout()" expand="block">Logout
+              <ion-icon slot="icon-only" name="log-out"></ion-icon>
+          </ion-button>
         </ion-list>
       </ion-content>
     </ion-menu>

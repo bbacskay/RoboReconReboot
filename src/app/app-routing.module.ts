@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -9,24 +10,17 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: './pages/home/home.module#HomePageModule'
+    loadChildren: './pages/public/home/home.module#HomePageModule'
   },
   {
-    path: 'matchscouting',
-    loadChildren: './pages/matchscouting/matchscouting.module#MatchscoutingPageModule'
+    path: 'login',
+    loadChildren: './pages/public/login/login.module#LoginPageModule'
   },
   { 
-    path: 'configuration',
-    loadChildren: './pages/configuration/configuration.module#ConfigurationPageModule'
+    path: 'private', 
+    canActivate: [AuthGuardService],
+    loadChildren: './pages/private/private-routing.module#PrivateRoutingModule'
   },
-  {
-    path: 'scoutmanager',
-    loadChildren: './pages/scoutmanager/scoutmanager.module#ScoutmanagerPageModule'
-  },
-  {
-    path: 'teammanager',
-    loadChildren: './pages/teammanager/teammanager.module#TeammanagerPageModule'
-  }
 ];
 
 @NgModule({
