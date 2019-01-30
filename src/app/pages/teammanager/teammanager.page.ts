@@ -30,6 +30,7 @@ export class TeammanagerPage implements OnInit {
   public editTeam(team:Team){
     this.inTeam.no = team.no;
     this.inTeam.name = team.name;
+    this.inTeam.comment = team.comment;
   }
 
   public saveTeam(){
