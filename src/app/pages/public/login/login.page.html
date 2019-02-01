@@ -8,5 +8,26 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-button (click)="login()">Login</ion-button>
+  <form [formGroup]="loginForm" (submit)="login()">
+    <ion-grid fixed>
+      <ion-row justify-content-center>
+        <ion-col sizeLg="4" sizeSm="6">
+          <ion-img src="/assets/teamlogo_3489.png"></ion-img>
+        </ion-col>
+      </ion-row>
+      <ion-row justify-content-center>
+        <ion-col sizeLg="4" sizeSm="6">
+          <ion-list lines="full">
+            <ion-item>
+              <ion-input type="text" formControlName="user" placeholder="Username"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="password" formControlName="password" placeholder="Password"></ion-input>
+            </ion-item> 
+          </ion-list>
+          <ion-button expand="block" color="primary" (click)="login()">Login</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>
