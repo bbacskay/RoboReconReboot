@@ -1,12 +1,96 @@
+<!DOCTYPE html>
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Match Scouting</ion-title>
+    <title>Match Scouting</title>
+    <div class="starter-template">
+      <h1>Input Match Data</h1>
+      <p class="lead">This page will be where you input scouting data.</p>
+    </div>
   </ion-toolbar>
 </ion-header>
-
+      
 <ion-content padding>
-
+  <ion-grid fixed>
+    <ion-row justify-content-center>
+      <ion-col size="4">
+        <ion-item>
+        <ion-label>Match Number</ion-label>
+        <ion-select name="MatchNum" interface="popover">
+          <ion-select-option>1</ion-select-option>
+          <ion-select-option>2</ion-select-option>
+          <ion-select-option>3</ion-select-option>
+          <ion-select-option>4</ion-select-option>
+          <ion-select-option>5</ion-select-option>
+          <ion-select-option>6</ion-select-option>
+          <ion-select-option>7</ion-select-option>
+          <ion-select-option>8</ion-select-option>
+          <ion-select-option>9</ion-select-option>
+          <ion-select-option>10</ion-select-option>
+        </ion-select>
+      </ion-item>
+      </ion-col>
+      <ion-col size="4">
+        <ion-item>
+        <ion-label>Team Number</ion-label>
+        <ion-select name="TeamNum" interface="popover">
+          <ion-select-option></ion-select-option>
+          <ion-select-option>1</ion-select-option>
+          <ion-select-option>342</ion-select-option>
+          <ion-select-option>3489</ion-select-option>
+          <ion-select-option>3490</ion-select-option>
+        </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size="4">
+        <ion-item>
+          <ion-label>Student Name</ion-label>
+            <ion-select name="Scout" interface="popover">
+              <ion-select-option>Aaron</ion-select-option>
+              <ion-select-option>Chris</ion-select-option>
+              <ion-select-option>Jared</ion-select-option>
+              <ion-select-option>Jason</ion-select-option>
+              <ion-select-option>Josh2</ion-select-option>
+            </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-contex-center>
+      <ion-col size="4">
+        <h1>SandStorm</h1>
+      </ion-col>
+      <ion-col size="4">
+        <h1>Teleop</h1>
+      </ion-col>
+      <ion-col>
+        <h1>End Game</h1>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-contex-center>
+      <ion-col size="4">
+        <ion-item>
+          <ion-label>What level did they start from?</ion-label>
+            <ion-select name="AQ1" interface="popover">
+              <ion-select-option>level 1</ion-select-option>
+              <ion-select-option>level 2</ion-select-option>
+           </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size="4">
+        <ion-item>
+          <ion-label type="floating">How many hatches were placed?</ion-label>
+          <ion-button (click)="hatchMinus()" size="default"><ion-icon name="remove-circle"></ion-icon></ion-button>
+           <ion-input [(ngModel)]="teleopHatches" name="TQ1" type="number" min="0"></ion-input>
+           <ion-button (click)="hatchPlus()" size="default"><ion-icon name="add-circle"></ion-icon></ion-button>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>  
+  
+  
 </ion-content>
+
