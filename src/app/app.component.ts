@@ -7,6 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { TeamDataService } from './services/team-data.service';
 import { AuthenticationService } from './services/authentication.service';
+import { SettingsService } from './services/settings.service';
 
 const privatePages = [
   {
@@ -34,8 +35,13 @@ const privatePages = [
 const publicPages = [
   {
     title: 'Home',
-    url: '/home',
-    icon: 'home'
+    url:   '/home',
+    icon:  'home'
+  },
+  {
+    title: 'Settings',
+    url:   '/settings',
+    icon:  'settings'
   },
   {
     title: 'Login',
@@ -59,6 +65,7 @@ export class AppComponent {
     private statusBar: StatusBar,
     private teamDataService: TeamDataService,
     private authenticationService: AuthenticationService,
+    private settingsService: SettingsService,
     private router: Router
   ) {
     this.initializeApp();
@@ -66,6 +73,7 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
+      this.settingsService.load();
       this.teamDataService.load();
       
       this.statusBar.styleDefault();

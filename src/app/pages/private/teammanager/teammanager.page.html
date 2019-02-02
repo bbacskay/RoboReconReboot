@@ -9,7 +9,7 @@
 
 <div wrap style="display: flex; flex: 1">
   <ion-content padding style="flex: 1" [scrollY]="true" >
-    <ion-card *ngFor="let team of teamDataService.teams">
+    <ion-card *ngFor="let team of teams">
       <ion-item>
         <b>#{{team.no}}</b> &nbsp;{{team.name}}
         <ion-buttons slot="end">
