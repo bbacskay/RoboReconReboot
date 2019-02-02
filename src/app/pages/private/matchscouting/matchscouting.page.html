@@ -16,39 +16,38 @@
   <ion-grid fixed>
     <ion-row justify-content-center>
       <ion-col size="4">
-        <label class="">
-        <label for="">Match Number</label>
-        <select 
-          ng-model="Matches"
-          ng-change="selectTeamMatchScout()">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-        </select>
-        </label>
+        <ion-item>
+        <ion-label>Match Number</ion-label>
+        <ion-select name="MatchNum" interface="popover">
+          <ion-select-option>1</ion-select-option>
+          <ion-select-option>2</ion-select-option>
+          <ion-select-option>3</ion-select-option>
+          <ion-select-option>4</ion-select-option>
+          <ion-select-option>5</ion-select-option>
+          <ion-select-option>6</ion-select-option>
+          <ion-select-option>7</ion-select-option>
+          <ion-select-option>8</ion-select-option>
+          <ion-select-option>9</ion-select-option>
+          <ion-select-option>10</ion-select-option>
+        </ion-select>
+      </ion-item>
       </ion-col>
       <ion-col size="4">
-        <label class="">
-        <label for="">Team Number</label>
-        <select>
-          <option value="1">1</option>
-          <option value="342">342</option>
-          <option value="3489">3489</option>
-          <option value="3490">3490</option>
-        </select>
-      </label>
+        <ion-item>
+        <ion-label>Team Number</ion-label>
+        <ion-select name="TeamNum" interface="popover">
+          <ion-select-option></ion-select-option>
+          <ion-select-option>1</ion-select-option>
+          <ion-select-option>342</ion-select-option>
+          <ion-select-option>3489</ion-select-option>
+          <ion-select-option>3490</ion-select-option>
+        </ion-select>
+        </ion-item>
       </ion-col>
       <ion-col size="4">
         <ion-item>
           <ion-label>Student Name</ion-label>
-            <ion-select>
+            <ion-select name="Scout" interface="popover">
               <ion-select-option>Aaron</ion-select-option>
               <ion-select-option>Chris</ion-select-option>
               <ion-select-option>Jared</ion-select-option>
