@@ -1,12 +1,65 @@
+<!DOCTYPE html>
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Match Scouting</ion-title>
+    <title>Match Scouting</title>
+    <div class="starter-template">
+      <h1>Input Match Data</h1>
+      <p class="lead">This page will be where you input scouting data.</p>
+    </div>
   </ion-toolbar>
 </ion-header>
-
+      
 <ion-content padding>
-
+  <ion-grid fixed>
+    <ion-row justify-content-center>
+      <ion-col size="4">
+        <label class="">
+        <label for="">Match Number</label>
+        <select 
+          ng-model="Matches"
+          ng-change="selectTeamMatchScout()">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+        </label>
+      </ion-col>
+      <ion-col size="4">
+        <label class="">
+        <label for="">Team Number</label>
+        <select>
+          <option value="1">1</option>
+          <option value="342">342</option>
+          <option value="3489">3489</option>
+          <option value="3490">3490</option>
+        </select>
+      </label>
+      </ion-col>
+      <ion-col size="4">
+        <ion-item>
+          <ion-label>Student Name</ion-label>
+            <ion-select>
+              <ion-select-option>Aaron</ion-select-option>
+              <ion-select-option>Chris</ion-select-option>
+              <ion-select-option>Jared</ion-select-option>
+              <ion-select-option>Jason</ion-select-option>
+              <ion-select-option>Josh2</ion-select-option>
+            </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>  
+  
+  
 </ion-content>
+
