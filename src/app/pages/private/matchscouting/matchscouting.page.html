@@ -57,6 +57,38 @@
         </ion-item>
       </ion-col>
     </ion-row>
+    <ion-row justify-contex-center>
+      <ion-col size="4">
+        <h1>SandStorm</h1>
+      </ion-col>
+      <ion-col size="4">
+        <h1>Teleop</h1>
+      </ion-col>
+      <ion-col>
+        <h1>End Game</h1>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-contex-center>
+      <ion-col size="4">
+        <ion-item>
+          <ion-label>What level did they start from?</ion-label>
+            <ion-select name="AQ1" interface="popover">
+              <ion-select-option>level 1</ion-select-option>
+              <ion-select-option>level 2</ion-select-option>
+           </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size="4">
+        <ion-item>
+          <ion-label type="floating">How many hatches were placed?</ion-label>
+          <ion-button (click)="hatchMinus()" size="default"><ion-icon name="remove-circle"></ion-icon></ion-button>
+           <ion-input [(ngModel)]="teleopHatches" name="TQ1" type="number" min="0"></ion-input>
+           <ion-button (click)="hatchPlus()" size="default"><ion-icon name="add-circle"></ion-icon></ion-button>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
   </ion-grid>  
   
   
