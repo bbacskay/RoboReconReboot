@@ -14,7 +14,8 @@ export class TeammanagerPage implements OnInit {
 
   constructor(public teamDataService:TeamDataService) { 
     this.inTeam = {
-      no: 0,
+      number: 0,
+      ba_team_key: '',
       name: '',
       comment: ''
     }
@@ -33,7 +34,8 @@ export class TeammanagerPage implements OnInit {
   }
 
   public editTeam(team:Team){
-    this.inTeam.no = team.no;
+    this.inTeam.number = team.number;
+    this.inTeam.ba_team_key = team.ba_team_key;
     this.inTeam.name = team.name;
     this.inTeam.comment = team.comment;
   }

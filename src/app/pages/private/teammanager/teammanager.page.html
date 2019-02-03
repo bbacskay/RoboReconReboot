@@ -11,7 +11,7 @@
   <ion-content padding style="flex: 1" [scrollY]="true" >
     <ion-card *ngFor="let team of teams">
       <ion-item>
-        <b>#{{team.no}}</b> &nbsp;{{team.name}}
+        <b>#{{team.number}}</b> &nbsp;{{team.name}}
         <ion-buttons slot="end">
           <ion-button (click)="editTeam(team)">
             <ion-icon slot="icon-only" name="create"></ion-icon>
@@ -28,7 +28,11 @@
     <form #teamEditForm="ngForm">
       <ion-item>
         <ion-label>Team number</ion-label>
-        <ion-input name="TeamNo" type="number" [(ngModel)]="inTeam.no" placeholder="####" minlength="4" maxlength="4" required="true"></ion-input>
+        <ion-input name="TeamNo" type="number" [(ngModel)]="inTeam.number" placeholder="####" minlength="4" maxlength="4" required="true"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Team BA key</ion-label>
+        <ion-input name="ba_key" type="text" [(ngModel)]="inTeam.ba_team_key" placeholder="frcXXXX"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Team name</ion-label>

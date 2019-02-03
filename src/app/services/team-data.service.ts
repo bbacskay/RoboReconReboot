@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Team } from '../interfaces/team';
 import { BehaviorSubject } from 'rxjs';
+import { SettingsService } from './settings.service';
 
 
 @Injectable({
@@ -13,7 +14,7 @@ export class TeamDataService {
 
   teams = new BehaviorSubject([]);
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, private appSettings: SettingsService) {
   }
 
   public load() {
@@ -75,7 +76,7 @@ export class TeamDataService {
    * @param team Team object to add
    */
   public addTeam(team: Team): void {
-    console.log('Add team: ' + team.no + ' ' + team.name);
+    console.log('Add team: ' + team.number + ' ' + team.name);
 
     //let newTeam = <Team>{};
     //newTeam = Object.assign({}, team);
@@ -86,7 +87,8 @@ export class TeamDataService {
     //this.sortTeamsByNo();
 
     this.http.post(this.apiPath + '/team/create.php', {
-      no: team.no,
+      no: team.number,
+      ba_team_key: team.ba_team_key,
       name: team.name,
       comment: team.comment
     }
@@ -104,7 +106,7 @@ export class TeamDataService {
    */
   public saveTeam(team: Team): void {
     // Try to find the team based on the team number in the array
-    var actTeam = this.teams.value.find(currentTeam => currentTeam.no === team.no);
+    var actTeam = this.teams.value.find(currentTeam => currentTeam.no === team.number);
 
     // result is undefined if the team number doesn't exists in the array
     if (actTeam != undefined) {
@@ -123,7 +125,7 @@ export class TeamDataService {
    * @param team  Team object to delete
    */
   public deleteTeam(team: Team): void {
-    console.log('Delete team: ' + team.no + ' ' + team.name);
+    console.log('Delete team: ' + team.number + ' ' + team.name);
 
     /*
     // Look for the team in the array, function returnd -1 if NOT found
@@ -137,7 +139,7 @@ export class TeamDataService {
 */
 
     this.http.post(this.apiPath + '/team/delete.php', {
-      no: team.no
+      no: team.number
     }
     ).subscribe((result) => {
       console.log(result);

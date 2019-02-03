@@ -1,5 +1,6 @@
 export interface Team {
-    no: number;
+    number: number;
+    ba_team_key: string;
     name: string;
     comment: string;
 }
