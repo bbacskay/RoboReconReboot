@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form>
+    <ion-list lines="full">
+      <ion-item>
+        <ion-label>Server path</ion-label>
+        <ion-input name="apiPath" type="url" inputmode="url" placeholder="server path to api" [(ngModel)]="appSettings.apiPath"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Scout alliance</ion-label>
+        <ion-select name="alliance" [(ngModel)]="appSettings.scoutAlliance">
+          <ion-select-option>blue</ion-select-option>
+          <ion-select-option>red</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Scout position</ion-label>
+        <ion-select name="position" [(ngModel)]="appSettings.scoutPosition">
+          <ion-select-option>left</ion-select-option>
+          <ion-select-option>center</ion-select-option>
+          <ion-select-option>right</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-list>
+        <ion-button color="primary" (click)="save()">Save settings</ion-button>
+      </ion-list>
+    </ion-list>
+  </form>
+</ion-content>

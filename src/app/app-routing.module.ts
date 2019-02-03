@@ -13,6 +13,10 @@ const routes: Routes = [
     loadChildren: './pages/public/home/home.module#HomePageModule'
   },
   {
+    path: 'settings',
+    loadChildren: './pages/public/settings/settings.module#SettingsPageModule'
+  },
+  {
     path: 'login',
     loadChildren: './pages/public/login/login.module#LoginPageModule'
   },
@@ -20,7 +24,7 @@ const routes: Routes = [
     path: 'private', 
     canActivate: [AuthGuardService],
     loadChildren: './pages/private/private-routing.module#PrivateRoutingModule'
-  },
+  }
 ];
 
 @NgModule({
