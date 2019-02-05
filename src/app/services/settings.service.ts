@@ -17,13 +17,16 @@ export class SettingsService {
   constructor(private storage: Storage) {
    }
 
-   load() {
-     this.storage.get('settings').then((settingsdata) => {
+   load(): Promise<boolean> {
+    return new Promise((resolve) => {
+      this.storage.get('settings').then((settingsdata) => {
        if (settingsdata != null) {
          this.settings.next(settingsdata);
          console.log('Settings service loaded data');
        }
-     })
+       resolve(true);
+      })
+    });
    }
 
   save(data:Settings): void {

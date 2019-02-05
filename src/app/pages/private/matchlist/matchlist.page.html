@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Match list</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid class="matchgrid" fixed="no">
+    <ion-row justify-content-center>
+      <ion-col size="1"><b>Match no.</b></ion-col>
+      <ion-col class="blue" size="1"><b>Blue 1</b></ion-col>
+      <ion-col class="blue" size="1"><b>Blue 2</b></ion-col>
+      <ion-col class="blue" size="1"><b>Blue 3</b></ion-col>
+      <ion-col class="red" size="1"><b>Red 1</b></ion-col>
+      <ion-col class="red" size="1"><b>Red 2</b></ion-col>
+      <ion-col class="red" size="1"><b>Red 3</b></ion-col>
+    </ion-row>
+    <ion-row justify-content-center *ngFor="let matchitem of matches">
+      <ion-col size="1">{{matchitem.matchNo}}</ion-col>
+      <ion-col class="blue" size="1">{{matchitem.blue1TeamNumber}}</ion-col>
+      <ion-col class="blue" size="1">{{matchitem.blue2TeamNumber}}</ion-col>
+      <ion-col class="blue" size="1">{{matchitem.blue3TeamNumber}}</ion-col>
+      <ion-col class="red" size="1">{{matchitem.red1TeamNumber}}</ion-col>
+      <ion-col class="red" size="1">{{matchitem.red2TeamNumber}}</ion-col>
+      <ion-col class="red" size="1">{{matchitem.red3TeamNumber}}</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

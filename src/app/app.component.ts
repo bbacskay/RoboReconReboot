@@ -29,6 +29,11 @@ const privatePages = [
     title: 'Scout Manager',
     url: '/private/scoutmanager',
     icon: 'contacts'
+  },
+  {
+    title: 'Match list',
+    url: '/private/matchlist',
+    icon: 'trophy'
   }
 ];
 
@@ -73,8 +78,10 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.settingsService.load();
-      this.teamDataService.load();
+      this.settingsService.load().then(() => {
+        console.log('Settings loaded');
+        this.teamDataService.load();
+      });
       
       this.statusBar.styleDefault();
       this.splashScreen.hide();

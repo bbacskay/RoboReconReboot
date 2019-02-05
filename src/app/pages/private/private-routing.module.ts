@@ -6,7 +6,7 @@ const routes: Routes = [
     path: 'matchscouting',
     loadChildren: './matchscouting/matchscouting.module#MatchscoutingPageModule'
   },
-  { 
+  {
     path: 'configuration',
     loadChildren: './configuration/configuration.module#ConfigurationPageModule'
   },
@@ -17,11 +17,15 @@ const routes: Routes = [
   {
     path: 'teammanager',
     loadChildren: './teammanager/teammanager.module#TeammanagerPageModule'
+  },
+  {
+    path: 'matchlist',
+    loadChildren: './matchlist/matchlist.module#MatchlistPageModule'
   }
 ]
 
 @NgModule({
-  imports: [ RouterModule.forChild(routes)],
-  exports: [ RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class PrivateRoutingModule { }

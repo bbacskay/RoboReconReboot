@@ -1,0 +1,22 @@
+.matchgrid {
+    border: solid;
+    --ion-grid-columns: 7;
+    padding: 0;
+}
+
+.red {
+    background-color: #ff9999;
+}
+
+.blue {
+    background-color: #9999ff;
+}
+
+ion-row {
+    border: solid;
+    border-width: 1px;
+}
+
+ion-col {
+    text-align: center;
+}
