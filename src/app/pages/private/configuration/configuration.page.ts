@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigService } from '../../../services/config.service';
+import { EventsService } from '../../../services/events.service';
 
 @Component({
   selector: 'app-configuration',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfigurationPage implements OnInit {
 
-  constructor() { }
+  constructor(public config: ConfigService, public events: EventsService) { }
 
   ngOnInit() {
+  }
+
+  save() {
+    console.log(this.config.config);
+    //this.config.save();
   }
 
 }

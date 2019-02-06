@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatchListItem } from '../../../interfaces/match';
+import { ConfigService } from '../../../services/config.service';
 
 @Component({
   selector: 'app-matchlist',
@@ -9,8 +10,9 @@ import { MatchListItem } from '../../../interfaces/match';
 export class MatchlistPage implements OnInit {
 
   private matches: MatchListItem[] = [];
+  private event: string;
 
-  constructor() { 
+  constructor(private config: ConfigService) { 
     this.matches.push({
       matchNo: 1,
       blue1TeamNumber: 1111,
@@ -33,6 +35,7 @@ export class MatchlistPage implements OnInit {
   }
 
   ngOnInit() {
+    //event = this.config.config.selectedEvent
   }
 
 }

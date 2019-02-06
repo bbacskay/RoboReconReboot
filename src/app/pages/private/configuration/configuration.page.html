@@ -7,6 +7,22 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content>
+  <form>
+    <ion-list lines="full">
+      <ion-item>
+        <ion-label>Own team</ion-label>
+        <ion-input name="ownTeam" type="number" inputmode="number" [(ngModel)]="config.config.ownTeam"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Event</ion-label>
+        <ion-select interface="popover" name="selectedEvent" [(ngModel)]="config.config.selectedEvent">
+          <ion-select-option *ngFor="let event of events.eventsList" [value]="+(event.id)">{{event.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-list>
+        <ion-button color="primary" (click)="save()">Save configuration</ion-button>
+      </ion-list>
+    </ion-list>
+  </form>
 </ion-content>
