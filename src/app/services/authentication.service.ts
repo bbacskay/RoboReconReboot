@@ -27,7 +27,7 @@ export class AuthenticationService {
     });
   }
 
-  login() {
+  login(username: string, password: string) {
     this.storage.set(TOKEN_KEY,'auth token test').then(() => {
       this.authenticationState.next(true);
     })
