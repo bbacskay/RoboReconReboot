@@ -10,6 +10,8 @@ import { AuthenticationService } from '../../../services/authentication.service'
 export class LoginPage implements OnInit {
 
   public loginForm: FormGroup;
+  public username: string;
+  public password: string;
 
   constructor(private authService: AuthenticationService, private formBuilder: FormBuilder) { 
 
@@ -23,7 +25,7 @@ export class LoginPage implements OnInit {
   }
 
   login() {
-    this.authService.login();
+    this.authService.login(this.loginForm.value.user, this.loginForm.value.password);
   }
 
   

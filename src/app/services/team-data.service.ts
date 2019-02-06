@@ -10,7 +10,7 @@ import { SettingsService } from './settings.service';
 })
 export class TeamDataService {
 
-  private apiPath: string = "http://scoutpi-dev/api";
+  //private apiPath: string = "http://scoutpi-dev/api";
 
   teams = new BehaviorSubject([]);
 
@@ -21,7 +21,7 @@ export class TeamDataService {
 
     var tmpTeams: Team[] = [];
 
-    this.http.get<Team[]>(this.apiPath + '/team/read.php').subscribe(
+    this.http.get<Team[]>(this.appSettings.settings.value.apiPath + '/team/read.php').subscribe(
       (data) => {
         console.log(data);
         this.teams.next(data);
@@ -86,7 +86,7 @@ export class TeamDataService {
     // Sort teams by number
     //this.sortTeamsByNo();
 
-    this.http.post(this.apiPath + '/team/create.php', {
+    this.http.post(this.appSettings.settings.value.apiPath + '/team/create.php', {
       no: team.number,
       ba_team_key: team.ba_team_key,
       name: team.name,
@@ -138,7 +138,7 @@ export class TeamDataService {
     }
 */
 
-    this.http.post(this.apiPath + '/team/delete.php', {
+    this.http.post(this.appSettings.settings.value.apiPath + '/team/delete.php', {
       no: team.number
     }
     ).subscribe((result) => {
