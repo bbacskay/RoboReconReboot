@@ -8,6 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TeamDataService } from './services/team-data.service';
 import { AuthenticationService } from './services/authentication.service';
 import { SettingsService } from './services/settings.service';
+import { MatchDataService } from './services/match-data.service';
 
 const privatePages = [
   {
@@ -71,6 +72,7 @@ export class AppComponent {
     private teamDataService: TeamDataService,
     private authenticationService: AuthenticationService,
     private settingsService: SettingsService,
+    private matchDataService: MatchDataService,
     private router: Router
   ) {
     this.initializeApp();
@@ -81,6 +83,7 @@ export class AppComponent {
       this.settingsService.load().then(() => {
         console.log('Settings loaded');
         this.teamDataService.load();
+        this.matchDataService.load();
       });
       
       this.statusBar.styleDefault();
@@ -90,6 +93,7 @@ export class AppComponent {
         if (state) {
           this.router.navigate(['private', 'matchscouting']);
           this.appPages = privatePages;
+
         } else {
           this.router.navigate(['home']);
           this.appPages = publicPages;
