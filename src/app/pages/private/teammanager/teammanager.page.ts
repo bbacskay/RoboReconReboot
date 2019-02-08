@@ -29,6 +29,10 @@ export class TeammanagerPage implements OnInit {
 
   }
 
+  ionViewWillEnter() {
+    this.teamDataService.load();
+  }
+
   public deleteTeam(team:Team){
     this.teamDataService.deleteTeam(team);
   }
