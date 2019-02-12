@@ -33,34 +33,6 @@ export class TeamDataService {
         console.log("Get team list completed");
       }
     );
-    /*
-        // TODO
-        this.teams = [
-          {
-            no: 3234,
-            name: 'Team3234'
-          },
-          {
-            no: 3235,
-            name: 'Team3235'
-          }
-        ];
-    
-        // Add some test data
-        for (let index = 2100; index < 2150; index++) {
-          let nTeam = <Team>{};
-    
-          nTeam.no = index;
-          nTeam.name = 'Team' + index;
-    
-          this.teams.push(nTeam);
-    
-        }
-    */
-
-
-
-
   }
 
   /**
