@@ -46,7 +46,7 @@ export class MatchlistPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.matchlist.load();
+    this.matchlist.load(this.config.config.selectedEvent,'qm');
     this.eventlist.load();
   }
 

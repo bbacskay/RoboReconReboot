@@ -83,7 +83,7 @@ export class AppComponent {
       this.settingsService.load().then(() => {
         console.log('Settings loaded');
         this.teamDataService.load();
-        this.matchDataService.load();
+        //this.matchDataService.load();
       });
       
       this.statusBar.styleDefault();

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatchListItem } from '../interfaces/match';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { SettingsService } from './settings.service';
 import { BehaviorSubject } from 'rxjs';
 
@@ -16,17 +16,22 @@ export class MatchDataService {
   /**
    * Load match list
    */
-  public load() {
+  public load(eventid: number, compLevel: string) {
 
     var tmpMatches: MatchListItem[] = [];
 
-    this.http.get<MatchListItem[]>(this.appSettings.settings.value.apiPath + '/match/read.php').subscribe(
+    const params: HttpParams = new HttpParams()
+                                    .set('eventid', eventid.toString())
+                                    .set('complevel', compLevel);
+
+    this.http.get<MatchListItem[]>(this.appSettings.settings.value.apiPath + '/match/read.php', {params}).subscribe(
       (data) => {
         console.log(data);
         this.matches.next(data);
       },
       (err) => {
         console.log(err);
+        this.matches.next(<MatchListItem[]>[]);
       },
       () => {
         console.log("Get match list completed");
@@ -38,7 +43,7 @@ export class MatchDataService {
   /**
    * Add a new match
    * 
-   * @param match Team object to add
+   * @param match Match object to add
    */
   public addMatch(eventid: number, compLevel: string, match: MatchListItem): void {
     console.log('To event: ' + eventid + ' (' + compLevel + ') ' + ' Add match: ' + match);
@@ -56,7 +61,7 @@ export class MatchDataService {
     }
     ).subscribe((result) => {
       console.log(result);
-      this.load();
+      this.load(eventid,compLevel);
     });
 
   }
