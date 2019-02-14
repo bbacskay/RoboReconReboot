@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 import { SettingsService } from '../../../services/settings.service';
 import { Settings } from '../../../interfaces/settings';
 
@@ -11,7 +12,7 @@ export class SettingsPage implements OnInit {
 
   private appSettings: Settings;
 
-  constructor(private settings: SettingsService) { 
+  constructor(private settings: SettingsService, private toastController: ToastController) { 
   }
 
   ngOnInit() {
@@ -20,8 +21,19 @@ export class SettingsPage implements OnInit {
     })
   }
 
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Your settings have been saved.',
+      animated: true,
+      duration: 2000
+    });
+    toast.present();
+  }
+
   save() {
-    this.settings.save(this.appSettings);
+    this.settings.save(this.appSettings).then(() => {
+      this.presentToast();
+    });
   }
 
 }

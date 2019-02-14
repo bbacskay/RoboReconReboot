@@ -29,11 +29,13 @@ export class SettingsService {
     });
    }
 
-  save(data:Settings): void {
-    this.storage.set('settings',data).then(() => {
-      this.settings.next(data);
-    }
-
-    );
+  save(data:Settings): Promise<boolean> {
+    return new Promise((resolve) => {
+      this.storage.set('settings',data).then(() => {
+        this.settings.next(data);
+        resolve(true);
+      })
+      
+    });
   }
 }
