@@ -21,7 +21,12 @@ const routes: Routes = [
   {
     path: 'matchlist',
     loadChildren: './matchlist/matchlist.module#MatchlistPageModule'
-  }
+  },
+  { path: 'matchedit/:matchid', 
+    loadChildren: './matchedit/matchedit.module#MatcheditPageModule' 
+  },
+  { path: 'matchadd/:matchno',
+   loadChildren: './matchadd/matchadd.module#MatchaddPageModule' }
 ]
 
 @NgModule({

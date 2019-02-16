@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/private/matchlist"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add match to {{eventName}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row justify-content-center>
+          <ion-col size-lg="3" size-md="6" size-sm="9">
+            <ion-list lines="full">
+              <ion-list-header>
+                <ion-label>Match {{matchData.matchNo}}</ion-label>
+              </ion-list-header>
+              <ion-item class="blue">
+                <ion-label>Blue team 1</ion-label>
+                <ion-input slot="end" type="number" [(ngModel)]="matchData.blue1TeamNumber"></ion-input>
+              </ion-item>
+              <ion-item class="blue">
+                <ion-label>Blue team 2</ion-label>
+                <ion-input slot="end" type="number" [(ngModel)]="matchData.blue2TeamNumber"></ion-input>
+              </ion-item>
+              <ion-item class="blue">
+                <ion-label>Blue team 3</ion-label>
+                <ion-input slot="end" type="number" [(ngModel)]="matchData.blue3TeamNumber"></ion-input>
+              </ion-item>
+              <ion-item class="red">
+                <ion-label>Red team 1</ion-label>
+                <ion-input slot="end" type="number" [(ngModel)]="matchData.red1TeamNumber"></ion-input>
+              </ion-item>
+              <ion-item class="red">
+                <ion-label>Red team 2</ion-label>
+                <ion-input slot="end" type="number" [(ngModel)]="matchData.red2TeamNumber"></ion-input>
+              </ion-item>
+              <ion-item class="red">
+                <ion-label>Red team 3</ion-label>
+                <ion-input slot="end" type="number" [(ngModel)]="matchData.red3TeamNumber"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+</ion-content>
+<ion-footer>
+    <ion-button (click)="add()" expand="block">Add
+      <ion-icon slot="start" name="add"></ion-icon>
+    </ion-button>
+  </ion-footer>

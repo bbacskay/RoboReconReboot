@@ -17,8 +17,9 @@
       <ion-col class="red" size="1"><b>Red 1</b></ion-col>
       <ion-col class="red" size="1"><b>Red 2</b></ion-col>
       <ion-col class="red" size="1"><b>Red 3</b></ion-col>
+      <ion-col size="2">&nbsp;</ion-col>
     </ion-row>
-    <ion-row justify-content-center *ngFor="let matchitem of matches">
+    <ion-row justify-content-center *ngFor="let matchitem of matches ; let i = index" align-items-center>
       <ion-col size="1">{{matchitem.matchNo}}</ion-col>
       <ion-col class="blue" size="1">{{matchitem.blue1TeamNumber}}</ion-col>
       <ion-col class="blue" size="1">{{matchitem.blue2TeamNumber}}</ion-col>
@@ -26,6 +27,18 @@
       <ion-col class="red" size="1">{{matchitem.red1TeamNumber}}</ion-col>
       <ion-col class="red" size="1">{{matchitem.red2TeamNumber}}</ion-col>
       <ion-col class="red" size="1">{{matchitem.red3TeamNumber}}</ion-col>
+      <ion-col size="2">
+        <ion-button *ngIf="i==matches.length-1" [routerLink]="'/private/matchadd/' + (+(matchitem.matchNo)+1)" [routerDirection]="'forward'" fill="clear" color="dark" size="small">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+        <ion-button [routerLink]="'/private/matchedit/' + matchitem.matchId" [routerDirection]="'forward'" fill="clear"
+          size="small" color="dark">
+          <ion-icon slot="icon-only" name="create"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="i==matches.length-1" (click)="deleteMatch(matchitem)" fill="clear" color="dark" size="small">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-button>
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

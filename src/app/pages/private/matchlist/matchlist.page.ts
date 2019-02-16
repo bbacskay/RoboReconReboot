@@ -50,4 +50,15 @@ export class MatchlistPage implements OnInit {
     this.eventlist.load();
   }
 
+
+  deleteMatch(matchitem: MatchListItem) {
+    console.log('Delete match with no ' + matchitem.matchNo + ' from event ' + this.config.config.selectedEvent);
+
+    this.matchlist.deleteMatch(this.config.config.selectedEvent,'qm', matchitem.matchId);
+  }
+
+  addMatch(matchNo: number) {
+    console.log('Add match with number ' + matchNo + ' to event: ' + this.config.config.selectedEvent);
+  }
+
 }

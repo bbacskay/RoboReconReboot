@@ -2,6 +2,7 @@ import { Team } from './team';
 import { Scout } from './scout';
 
 export interface MatchListItem {
+    matchId: number;
     matchNo: number;
     blue1TeamNumber: number;
     blue2TeamNumber: number;
