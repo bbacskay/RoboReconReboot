@@ -1,0 +1,51 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/private/scoutlist"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Edit scout</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding>
+  
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col size-lg="3" size-md="6" size-sm="9">
+          <ion-list lines="full">
+            <ion-item>
+              <ion-label>Login name</ion-label>
+              <ion-input slot="end" type="text" placeholder="Login name" [(ngModel)]="scout.loginname"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>First name</ion-label>
+              <ion-input slot="end" type="text" placeholder="First name" [(ngModel)]="scout.firstname"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Last name</ion-label>
+              <ion-input slot="end" type="text" placeholder="Last name" [(ngModel)]="scout.lastname"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Mentor</ion-label>
+              <ion-toggle slot="end" [(ngModel)]="scout.mentor"></ion-toggle>
+            </ion-item>
+            <ion-item>
+              <ion-label>Password</ion-label>
+              <ion-input slot="end" type="password" [(ngModel)]="scout.password"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Password (confirm)</ion-label>
+              <ion-input name="passwdConf" slot="end" type="password"></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+  
+  <ion-footer>
+    <ion-button (click)="save()" expand="block">
+      <ion-icon slot="start" name="save"></ion-icon>
+      Save
+    </ion-button>
+  </ion-footer>

@@ -8,5 +8,30 @@
 </ion-header>
 
 <ion-content padding>
-
+  <ion-card *ngFor="let scout of scouts">
+    <ion-item>
+      <ion-icon *ngIf="!scout.mentor" slot="start" name="person"></ion-icon>
+      <ion-icon *ngIf="scout.mentor" slot="start" name="school"></ion-icon>
+      <b>{{scout.loginname}}</b> &nbsp;- {{scout.firstname}} {{scout.lastname}}
+      <ion-buttons slot="end">
+        <ion-button [routerLink]="'/private/scoutedit/'+scout.scout_id" [routerDirection]="'forward'">
+          <ion-icon slot="icon-only" name="create"></ion-icon>
+        </ion-button>
+        <ion-button (click)="presentAlertConfirmDelete(scout)">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-card>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="solid" color="primary" [routerLink]="'/private/scoutadd/'" [routerDirection]="'forward'">
+        <ion-icon slot="start" name="person-add"></ion-icon>
+        Add scout
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
