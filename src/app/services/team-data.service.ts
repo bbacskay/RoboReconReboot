@@ -23,7 +23,7 @@ export class TeamDataService {
 
     this.http.get<Team[]>(this.appSettings.settings.value.apiPath + '/team/read.php').subscribe(
       (data) => {
-        console.log(data);
+        //console.log(data);
         this.teams.next(data);
       },
       (err) => {
