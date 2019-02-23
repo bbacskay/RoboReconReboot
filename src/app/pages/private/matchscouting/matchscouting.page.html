@@ -76,19 +76,25 @@
       <ion-col size="4">
         <ion-item>
           <ion-label type="floating">How many hatches were placed?</ion-label>
-          <ion-button (click)="valueMinus(1)" size="default">
+          <ion-button (click)="valueMinus(1)" size="small">
             <ion-icon name="remove-circle"></ion-icon>
           </ion-button>
           <ion-input [(ngModel)]="valueArray[1]" name="TQ1" type="number" min="0"></ion-input>
-          <ion-button (click)="valuePlus(1)" size="default">
+          <ion-button (click)="valuePlus(1)" size="small">
             <ion-icon name="add-circle"></ion-icon>
           </ion-button>
         </ion-item>
       </ion-col>
-      <ion-col>
+      <ion-col size="4">
+        <ion-item *ngFor="let question of questions">
+          <ion-label>{{question.questionText}}</ion-label>
+          <ion-input *ngIf="question.questionType === 0" type="text" name="{{question.id}}"></ion-input>
+          <ion-select *ngIf="question.questionType === 0" name="{{question.id}}" type="number" ></ion-select>
+          <ion-select *ngIf="question.questionType === 2" name="{{question.id}}" interface="popover">
+            <ion-select-option *ngFor="let questionItem of question.questionItems" value="{{questionItem.value}}">{{questionItem.itemText}}</ion-select-option>
+          </ion-select>
+        </ion-item>
       </ion-col>
     </ion-row>
   </ion-grid>
-
-
 </ion-content>
