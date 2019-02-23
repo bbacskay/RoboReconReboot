@@ -9,36 +9,10 @@ import { Scout } from '../interfaces/scout';
 })
 export class ScoutDataService {
 
-  private tempScouts: Scout[];
-
   public scouts: BehaviorSubject<Scout[]> = new BehaviorSubject<Scout[]>([]);
 
   constructor(private appSettings: SettingsService, private http: HttpClient) { 
     
-
-    this.tempScouts = [
-      { scout_id: 1,
-        loginname: 'balu',
-        password: 'pwd',
-        firstname: 'Balazs',
-        lastname: 'Bacskay',
-        mentor: true
-      },
-      { scout_id: 2,
-        loginname: 'david',
-        password: 'pwd',
-        firstname: 'David',
-        lastname: 'Castro',
-        mentor: true
-      },
-      { scout_id: 3,
-        loginname: 'jared',
-        password: 'pwd',
-        firstname: 'Jared',
-        lastname: 'Andraszek',
-        mentor: false
-      }
-    ];
   }
 
   /**
@@ -46,43 +20,61 @@ export class ScoutDataService {
    */
   public load() {
 
-    this.scouts.next(this.tempScouts);
-
+    this.http.get<Scout[]>(this.appSettings.settings.value.apiPath + '/scout/read.php').subscribe(
+      (data) => {
+        console.log(data);
+        this.scouts.next(data);
+      },
+      (err) => {
+        console.log(err);
+      },
+      () => {
+        console.log("Get scout list completed");
+      }
+    );
   }
 
 
   public add(scout: Scout) {
-    var tmpScout: Scout;
+    this.http.post(this.appSettings.settings.value.apiPath + '/scout/create.php', {
+      loginname: scout.loginname,
+      firstname: scout.firstname,
+      lastname: scout.lastname,
+      password: scout.password,
+      mentor: scout.mentor
+    }
+    ).subscribe((result) => {
+      console.log(result);
+      this.load();
+    });
 
-    tmpScout = scout;
-    tmpScout.scout_id = this.tempScouts.length + 1;
-
-    this.tempScouts.push(tmpScout);
-
-    this.scouts.next(this.tempScouts);
+    
   }
 
   public update(pScout: Scout) {
-    var itemIdx = this.tempScouts.findIndex(scout => scout.scout_id == pScout.scout_id);
-
-    this.tempScouts[itemIdx] = pScout;
-
-    this.load();
+    this.http.post(this.appSettings.settings.value.apiPath + '/scout/update.php', {
+      scout_id: pScout.scout_id,
+      loginname: pScout.loginname,
+      firstname: pScout.firstname,
+      lastname: pScout.lastname,
+      mentor: pScout.mentor,
+      password: pScout.password
+    }
+    ).subscribe((result) => {
+      console.log(result);
+      this.load();
+    });
 
   }
 
   public delete(scoutId: number) {
-    
-    var itemIdx = this.tempScouts.findIndex(scout => scout.scout_id == scoutId);
-    console.log(this.tempScouts);
-    console.log('Delete itemIdx: ' + itemIdx);
-
-    this.tempScouts.splice(itemIdx,1);
-
-    console.log('Delete scout: ' + scoutId);
-
-    this.load();
-
+    this.http.post(this.appSettings.settings.value.apiPath + '/scout/delete.php', {
+      scout_id: scoutId
+    }
+    ).subscribe((result) => {
+      console.log(result);
+      this.load();
+    });
   }
 
 }
