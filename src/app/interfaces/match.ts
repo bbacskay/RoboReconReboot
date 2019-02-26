@@ -25,7 +25,7 @@ export interface TeamItem {
 export interface QuestionItem {
     id: string;
     questionText: string;
-    questionType: number; //define the numbers 0 = the text imput/1 = + and - input/2 = selection list imput
+    questionType: number; //define the numbers 0 = the text input/1 = + and - input/2 = selection list imput
     answer: any;       
     questionItems: QuestionOptionItem[];
 }
