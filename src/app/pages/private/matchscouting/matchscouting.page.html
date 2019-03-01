@@ -1,19 +1,60 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Match scouting</ion-title>
-  </ion-toolbar>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="2">
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+          <ion-title>Match scouting
+            <!-- - Match no: {{MatchNum}} Team: {{TeamNum}} Scout: {{actScoutName}}-->
+          </ion-title>
+        </ion-toolbar>
+      </ion-col>
+      <ion-col size="2">
+        <ion-item lines="none">
+          <ion-label>Match Number</ion-label>
+          <ion-select name="MatchNum" interface="popover" [(ngModel)]="MatchNum">
+            <ion-select-option *ngFor="let match of matchNoArr; let i=index;" [value]="+i+1">
+              {{match}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size="2">
+        <ion-item lines="none">
+          <ion-label>Team Number</ion-label>
+          <ion-select name="TeamNum" interface="popover" [(ngModel)]="TeamNum">
+            <ion-select-option></ion-select-option>
+            <ion-select-option *ngFor="let team of teams" value="{{team.number}}">{{team.number}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size="4">
+        <ion-item lines="none">
+          <ion-label>Student Name</ion-label>
+          <ion-select name="Scout" interface="popover" [(ngModel)]="actScoutId" (ionChange)="updateScoutName()">
+            <ion-select-option *ngFor="let scout of scouts" value="{{scout.scout_id}}">{{scout.firstname}}
+              {{scout.lastname}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size=2>
+        <ion-button (click)="loadScoutData()">
+          Select match
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-header>
 
 <ion-content padding>
-  <ion-grid fixed>
+  <ion-grid>
+    <!--
     <ion-row justify-content-center>
       <ion-col size="4">
         <ion-item>
           <ion-label>Match Number</ion-label>
-          <ion-select name="MatchNum" interface="popover">
+          <ion-select name="MatchNum" interface="popover" [(ngModel)]="MatchNum">
             <ion-select-option>1</ion-select-option>
             <ion-select-option>2</ion-select-option>
             <ion-select-option>3</ion-select-option>
@@ -30,71 +71,141 @@
       <ion-col size="4">
         <ion-item>
           <ion-label>Team Number</ion-label>
-          <ion-select name="TeamNum" interface="popover">
+          <ion-select name="TeamNum" interface="popover" [(ngModel)]="TeamNum">
             <ion-select-option></ion-select-option>
-            <ion-select-option>1</ion-select-option>
-            <ion-select-option>342</ion-select-option>
-            <ion-select-option>3489</ion-select-option>
-            <ion-select-option>3490</ion-select-option>
+            <ion-select-option *ngFor="let team of teams" value="{{team.number}}">{{team.number}}</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-col>
       <ion-col size="4">
         <ion-item>
           <ion-label>Student Name</ion-label>
-          <ion-select name="Scout" interface="popover">
-            <ion-select-option>Aaron</ion-select-option>
-            <ion-select-option>Chris</ion-select-option>
-            <ion-select-option>Jared</ion-select-option>
-            <ion-select-option>Jason</ion-select-option>
-            <ion-select-option>Josh2</ion-select-option>
+          <ion-select name="Scout" interface="popover" [(ngModel)]="actScoutId" (ionChange)="updateScoutName()">
+            <ion-select-option *ngFor="let scout of scouts" value="{{scout.scout_id}}">{{scout.firstname}}
+              {{scout.lastname}}</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-col>
     </ion-row>
+    -->
     <ion-row justify-contex-center>
-      <ion-col size="4">
+      <ion-col size="3">
         <h1>SandStorm</h1>
       </ion-col>
-      <ion-col size="4">
+      <ion-col size="3">
         <h1>Teleop</h1>
       </ion-col>
-      <ion-col>
+      <ion-col size="3">
         <h1>End Game</h1>
+      </ion-col>
+      <ion-col>
+        <h1>Notes</h1>
       </ion-col>
     </ion-row>
     <ion-row justify-contex-center>
-      <ion-col size="4">
-        <ion-item>
-          <ion-label>What level did they start from?</ion-label>
-          <ion-select name="AQ1" interface="popover">
-            <ion-select-option>level 1</ion-select-option>
-            <ion-select-option>level 2</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
-      <ion-col size="4">
-        <ion-item>
-          <ion-label type="floating">How many hatches were placed?</ion-label>
-          <ion-button (click)="valueMinus(1)" size="small">
+      <ion-col size="3">
+        <ion-item *ngFor="let question of questions.Sandstorm; let i=index;">
+          <ion-label position="stacked" text-wrap>{{question.questionText}}</ion-label>
+          <!-- Type 0 = text input field -->
+          <ion-input *ngIf="question.questionType === 0" [(ngModel)]="question.answer" type="text"
+            name="{{question.id}}"></ion-input>
+          <!-- Type 1 = number input with +/- buttons -->
+          <ion-button slot="start" *ngIf="question.questionType === 1" (click)="valueMinus(0,i)" size="default">
             <ion-icon name="remove-circle"></ion-icon>
           </ion-button>
-          <ion-input [(ngModel)]="valueArray[1]" name="TQ1" type="number" min="0"></ion-input>
-          <ion-button (click)="valuePlus(1)" size="small">
+          <ion-input *ngIf="question.questionType === 1" [(ngModel)]="question.answer" name="{{question.id}}"
+            type="text" size="3"></ion-input>
+          <ion-button slot="end" *ngIf="question.questionType === 1" (click)="valuePlus(0,i)" size="default">
             <ion-icon name="add-circle"></ion-icon>
           </ion-button>
-        </ion-item>
-      </ion-col>
-      <ion-col size="4">
-        <ion-item *ngFor="let question of questions">
-          <ion-label>{{question.questionText}}</ion-label>
-          <ion-input *ngIf="question.questionType === 0" type="text" name="{{question.id}}"></ion-input>
-          <ion-select *ngIf="question.questionType === 0" name="{{question.id}}" type="number" ></ion-select>
-          <ion-select *ngIf="question.questionType === 2" name="{{question.id}}" interface="popover">
-            <ion-select-option *ngFor="let questionItem of question.questionItems" value="{{questionItem.value}}">{{questionItem.itemText}}</ion-select-option>
+          <!-- Type 2 = selection list -->
+          <ion-select *ngIf="question.questionType === 2" [(ngModel)]="question.answer" name="{{question.id}}"
+            interface="popover">
+            <ion-select-option *ngFor="let questionItem of question.questionItems" value="{{questionItem.value}}">
+              {{questionItem.itemText}}</ion-select-option>
           </ion-select>
         </ion-item>
+      </ion-col>
+      <ion-col size="3">
+        <ion-item *ngFor="let question of questions.Teleop; let i=index;">
+          <ion-label position="stacked" text-wrap>{{question.questionText}}</ion-label>
+          <!-- Type 0 = text input field -->
+          <ion-input *ngIf="question.questionType === 0" [(ngModel)]="question.answer" type="text"
+            name="{{question.id}}"></ion-input>
+          <!-- Type 1 = number input with +/- buttons -->
+          <ion-button slot="start" *ngIf="question.questionType === 1" (click)="valueMinus(1,i)" size="default">
+            <ion-icon name="remove-circle"></ion-icon>
+          </ion-button>
+          <ion-input *ngIf="question.questionType === 1" [(ngModel)]="question.answer" name="{{question.id}}"
+            type="number" min="0"></ion-input>
+          <ion-button slot="end" *ngIf="question.questionType === 1" (click)="valuePlus(1,i)" size="default">
+            <ion-icon name="add-circle"></ion-icon>
+          </ion-button>
+          <!-- Type 2 = selection list -->
+          <ion-select *ngIf="question.questionType === 2" [(ngModel)]="question.answer" name="{{question.id}}"
+            interface="popover">
+            <ion-select-option *ngFor="let questionItem of question.questionItems" value="{{questionItem.value}}">
+              {{questionItem.itemText}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size="3">
+        <ion-item *ngFor="let question of questions.EndGame; let i=index;">
+          <ion-label position="stacked" text-wrap>{{question.questionText}}</ion-label>
+          <!-- Type 0 = text input field -->
+          <ion-input *ngIf="question.questionType === 0" [(ngModel)]="question.answer" type="text"
+            name="{{question.id}}"></ion-input>
+          <!-- Type 1 = number input with +/- buttons -->
+          <ion-button slot="start" *ngIf="question.questionType === 1" (click)="valueMinus(2,i)" size="default">
+            <ion-icon name="remove-circle"></ion-icon>
+          </ion-button>
+          <ion-input *ngIf="question.questionType === 1" [(ngModel)]="question.answer" name="{{question.id}}"
+            type="number" min="0"></ion-input>
+          <ion-button slot="end" *ngIf="question.questionType === 1" (click)="valuePlus(2,i)" size="default">
+            <ion-icon name="add-circle"></ion-icon>
+          </ion-button>
+          <!-- Type 2 = selection list -->
+          <ion-select *ngIf="question.questionType === 2" [(ngModel)]="question.answer" name="{{question.id}}"
+            interface="popover">
+            <ion-select-option *ngFor="let questionItem of question.questionItems" value="{{questionItem.value}}">
+              {{questionItem.itemText}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label position="stacked">Notes</ion-label>
+          <ion-textarea rows="6" [(ngModel)]="matchNote" placeholder="Match notes on the team"></ion-textarea>
+        </ion-item>
+        <div class="fixed" scrollY="true">
+          <ion-list>
+            <ion-item *ngFor="let note of previousMatchNotes">
+              <ion-label text-wrap>
+                <h3>Match - {{note.matchNo}}</h3>
+                <p>{{note.note}}</p>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
+<footer>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="solid" color="secondary" (click)="save()">Save
+        <ion-icon slot="start" name="save"></ion-icon>
+      </ion-button>
+      <ion-button fill="solid" color="danger" (click)="resetScoutData()">Reset form data
+        <ion-icon slot="start" name="refresh"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button fill="solid" color="primary" (click)="saveNext()">Save and Next
+        <ion-icon slot="end" name="save"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+  </ion-toolbar>
+</footer>

@@ -34,3 +34,22 @@ export interface QuestionOptionItem {
     value: number;
     itemText: String;
 }
+
+export interface ScoutingData {
+    id: number;
+    match_id: number;
+    team_no: number;
+    scout_id: number;
+    data: ResponseData[];
+    note: string;
+  }
+
+export interface ResponseData {
+    id: string;
+    response: any;
+}
+
+export interface PrevNoteItem {
+    matchNo: number;
+    note: string;
+}
