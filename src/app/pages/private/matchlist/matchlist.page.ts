@@ -11,7 +11,7 @@ import { EventsService } from '../../../services/events.service';
 })
 export class MatchlistPage implements OnInit {
 
-  private matches: MatchListItem[] = [];
+  public matches: MatchListItem[] = [];
   public event: string;
 
   constructor(private config: ConfigService, private matchlist: MatchDataService, private eventlist: EventsService) {
