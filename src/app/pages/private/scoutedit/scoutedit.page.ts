@@ -28,7 +28,7 @@ export class ScouteditPage implements OnInit {
   }
 
 
-  private save() {
+  public save() {
     this.scoutService.update(this.scout);
     this.router.navigate(['/private/scoutmanager']);
   };

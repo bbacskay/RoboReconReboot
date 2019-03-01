@@ -9,8 +9,8 @@ import { TeamDataService } from '../../../services/team-data.service';
 })
 export class TeammanagerPage implements OnInit {
 
-  private inTeam: Team;
-  private teams: Team[] = [];
+  public inTeam: Team;
+  public teams: Team[] = [];
 
   constructor(public teamDataService:TeamDataService) { 
     this.inTeam = {

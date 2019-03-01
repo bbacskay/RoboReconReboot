@@ -10,7 +10,7 @@ import { Settings } from '../../../interfaces/settings';
 })
 export class SettingsPage implements OnInit {
 
-  private appSettings: Settings;
+  public appSettings: Settings;
 
   constructor(private settings: SettingsService, private toastController: ToastController) { 
   }
@@ -30,7 +30,7 @@ export class SettingsPage implements OnInit {
     toast.present();
   }
 
-  save() {
+  public save() {
     this.settings.save(this.appSettings).then(() => {
       this.presentToast();
     });

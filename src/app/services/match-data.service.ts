@@ -13,6 +13,7 @@ export class MatchDataService {
 
   constructor(private appSettings: SettingsService, private http: HttpClient) { }
 
+
   /**
    * Load match list
    */
@@ -21,10 +22,10 @@ export class MatchDataService {
     var tmpMatches: MatchListItem[] = [];
 
     const params: HttpParams = new HttpParams()
-                                    .set('eventid', eventid.toString())
-                                    .set('complevel', compLevel);
+      .set('eventid', eventid.toString())
+      .set('complevel', compLevel);
 
-    this.http.get<MatchListItem[]>(this.appSettings.settings.value.apiPath + '/match/read.php', {params}).subscribe(
+    this.http.get<MatchListItem[]>(this.appSettings.settings.value.apiPath + '/match/load.php', { params }).subscribe(
       (data) => {
         console.log(data);
         this.matches.next(data);
@@ -61,7 +62,7 @@ export class MatchDataService {
     }
     ).subscribe((result) => {
       console.log(result);
-      this.load(eventid,compLevel);
+      this.load(eventid, compLevel);
     });
 
   }
@@ -80,7 +81,7 @@ export class MatchDataService {
     }
     ).subscribe((result) => {
       console.log(result);
-      this.load(eventid,compLevel);
+      this.load(eventid, compLevel);
     });
   }
 
@@ -90,7 +91,7 @@ export class MatchDataService {
     }
     ).subscribe((result) => {
       console.log(result);
-      this.load(eventid,compLevel);
+      this.load(eventid, compLevel);
     });
   }
 
