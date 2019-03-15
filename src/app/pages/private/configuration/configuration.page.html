@@ -20,9 +20,10 @@
           <ion-select-option *ngFor="let event of events.eventsList" [value]="+(event.id)">{{event.name}}</ion-select-option>
         </ion-select>
       </ion-item>
-      <ion-list>
-        <ion-button color="primary" (click)="save()">Save configuration</ion-button>
-      </ion-list>
     </ion-list>
   </form>
 </ion-content>
+
+<ion-footer>
+  <ion-button color="primary" expand="block" (click)="save()">Save configuration</ion-button>
+</ion-footer>
