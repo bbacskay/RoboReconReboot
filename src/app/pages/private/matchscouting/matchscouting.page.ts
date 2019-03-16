@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { QuestionItem, QuestionOptionItem, ScoutingData, ResponseData, PrevNoteItem } from '../../../interfaces/match';
+import { QuestionItem, QuestionOptionItem, ScoutingData, ResponseData, PrevNoteItem, MatchListItem } from '../../../interfaces/match';
 import { Team } from '../../../interfaces/team';
 import { Scout } from '../../../interfaces/scout';
 import { ScoutDataService } from '../../../services/scout-data.service';
 import { TeamDataService } from '../../../services/team-data.service';
 import { MatchscoutingDataService } from '../../../services/matchscouting-data.service';
+import { MatchDataService } from '../../../services/match-data.service';
+import { ConfigService } from '../../../services/config.service';
 
 
 @Component({
@@ -14,20 +16,26 @@ import { MatchscoutingDataService } from '../../../services/matchscouting-data.s
 })
 export class MatchscoutingPage implements OnInit {
 
+  public selectedMatch: number = 0;
   public MatchNum: number = 1;
+  public MatchId: number = 0;
   public TeamNum: number = 0;
   public actScoutId: number = 0;
   public actScoutName: string = '';
 
-  public matchNoArr: string[] = []
+  public matchesArr: MatchListItem[] = [];
+
   public scouts: Scout[] = [];
   public teams: Team[] = [];
+  public matchTeamsList: number[] = [];
 
   public matchNote: string = '';
 
   public previousMatchNotes: PrevNoteItem[] = [];
 
   public scoutingDataId: number = 0;
+
+  public displayQuestions: boolean = false;
 
   questions: {
     Sandstorm: QuestionItem[],
@@ -49,13 +57,17 @@ export class MatchscoutingPage implements OnInit {
             itemText: 'level 2'
           }
           ],
-          answer: ''
+          answer: 0
         },
         {
           id: 'SQ2',
           questionText: 'What game peice did they start with?',
           questionType: 2,
           questionItems: [{
+            value: 0,
+            itemText: 'None'
+          },
+          {
             value: 1,
             itemText: 'Hatch'
           },
@@ -64,7 +76,7 @@ export class MatchscoutingPage implements OnInit {
             itemText: 'Cargo'
           }
           ],
-          answer: ''
+          answer: 0
         },
         {
           id: 'SQ3',
@@ -78,6 +90,10 @@ export class MatchscoutingPage implements OnInit {
           questionText: 'What level did they place the hatch',
           questionType: 2,
           questionItems: [{
+            value: 0,
+            itemText: 'Did not place any hatch.'
+          },
+          {
             value: 1,
             itemText: 'Cargo Ship'
           },
@@ -94,7 +110,7 @@ export class MatchscoutingPage implements OnInit {
             itemText: 'Rocket Ship LV3'
           }
           ],
-          answer: ''
+          answer: 0
         },
         {
           id: 'SQ5',
@@ -208,7 +224,7 @@ export class MatchscoutingPage implements OnInit {
       EndGame: [
         {
           id: 'EQ1',
-          questionText: 'What level did they acheive?',
+          questionText: 'What level did they achieve?',
           questionType: 2,
           questionItems: [{
             value: 1,
@@ -275,7 +291,9 @@ export class MatchscoutingPage implements OnInit {
   constructor(
     public scoutData: ScoutDataService,
     private teamDataService: TeamDataService,
-    private scoutingData: MatchscoutingDataService
+    private scoutingData: MatchscoutingDataService,
+    private matchData: MatchDataService,
+    private configService: ConfigService
   ) {
     this.teamDataService.teams.subscribe((data) => {
       this.teams = data;
@@ -289,13 +307,22 @@ export class MatchscoutingPage implements OnInit {
       this.previousMatchNotes = data;
     });
 
+    this.matchData.matches.subscribe((data) => {
+      this.matchesArr = data;
+      console.log("matches loaded");
+      //console.log(this.matchesArr);
+      //this.selectedMatch = 0;
+      this.onChangeMatch();
+    });
+
     // Create list for the match numbers
-    var i: number;
-    for (i = 1; i <= 64; i++) {
-      var matchNoItem: string;
-      matchNoItem = 'Q' + i;
-      this.matchNoArr.push(matchNoItem);
-    }
+    // var i: number;
+    // for (i = 1; i <= 64; i++) {
+    //   var matchNoItem: {matchNo: string; matchId: number} = { matchNo: '', matchId: 0};
+    //   matchNoItem.matchNo = 'Q' + i;
+    //   matchNoItem.matchId = i;
+    //   this.matchNoArr.push(matchNoItem);
+    //}
   }
 
   ngOnInit() {
@@ -308,8 +335,29 @@ export class MatchscoutingPage implements OnInit {
 
   ionViewWillEnter() {
     this.scoutData.load();
+    this.matchData.load(this.configService.config.selectedEvent, 'qm');  // TODO: get eventid from configuration
   }
 
+  public onChangeMatch() {
+    if (this.selectedMatch < this.matchesArr.length) {
+      this.MatchId = this.matchesArr[this.selectedMatch].matchId;
+      this.MatchNum = this.matchesArr[this.selectedMatch].matchNo;
+
+      this.matchTeamsList = [ 
+        this.matchesArr[this.selectedMatch].blue1TeamNumber,
+        this.matchesArr[this.selectedMatch].blue2TeamNumber,
+        this.matchesArr[this.selectedMatch].blue3TeamNumber,
+        this.matchesArr[this.selectedMatch].red1TeamNumber,
+        this.matchesArr[this.selectedMatch].red2TeamNumber,
+        this.matchesArr[this.selectedMatch].red3TeamNumber
+      ];
+      this.matchTeamsList.sort(function(a, b){return a-b});
+
+      console.log("Match changed. SelectedMatch:" + this.selectedMatch + " MatchNo:" + this.MatchNum + "  MatchId:" + this.MatchId);
+    } else {
+      console.log("onChangeMatch: invalid selected index");
+    }
+  }
 
   public valueMinus(questionSection: number, numValue: number) {
     //console.log("valueMinus called: QS=" + questionSection + "  numValue="+ numValue);
@@ -369,9 +417,9 @@ export class MatchscoutingPage implements OnInit {
 
 
   public loadScoutData() {
-    this.scoutingData.read(this.MatchNum, this.TeamNum, this.actScoutId).then((data) => {
-      console.log('Matchscoutin: received data:');
-      console.log(data.data);
+    this.scoutingData.read(this.MatchId, this.TeamNum, this.actScoutId).then((data) => {
+      console.log('Matchscouting: received data:');
+      console.log(data);
 
       // Save database record id, it will be required for the update
       this.scoutingDataId = data.id;
@@ -404,6 +452,8 @@ export class MatchscoutingPage implements OnInit {
 
       // Restore note
       this.matchNote = data.note;
+
+      this.displayQuestions = true;
     });
 
     // Load previos notes
@@ -448,19 +498,23 @@ export class MatchscoutingPage implements OnInit {
     });
 
     this.matchNote = '';
+
+    this.previousMatchNotes = [];
   }
 
   public save() {
     var scoutingData: ScoutingData = {
       id: this.scoutingDataId,
-      match_id: this.MatchNum,
+      match_id: this.MatchId,
       team_no: this.TeamNum,
       scout_id: this.actScoutId,
       data: [],
       note: this.matchNote
     };
 
-    console.log('sctScoutId: ' + scoutingData.scout_id);
+    console.log('save function called.');
+    console.log('actScoutId: ' + scoutingData.scout_id);
+    console.log('scoutingDataId:' + this.scoutingDataId);
 
     //Save Sandstorm answers
     this.questions.Sandstorm.forEach((question) => {
@@ -499,7 +553,9 @@ export class MatchscoutingPage implements OnInit {
   public saveNext() {
     this.save();
     this.resetScoutData();
-    this.MatchNum++;
+    this.selectedMatch++;
     this.TeamNum = 0;
+
+    this.displayQuestions = false;
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from '../../../services/config.service';
 import { EventsService } from '../../../services/events.service';
+import { AlertService } from '../../../services/alert.service';
 
 @Component({
   selector: 'app-configuration',
@@ -9,14 +10,24 @@ import { EventsService } from '../../../services/events.service';
 })
 export class ConfigurationPage implements OnInit {
 
-  constructor(public config: ConfigService, public events: EventsService) { }
+  constructor(
+    public config: ConfigService,
+    public events: EventsService,
+    private alertService: AlertService
+  ) { }
 
   ngOnInit() {
   }
 
+
   save() {
     console.log(this.config.config);
-    //this.config.save();
+    this.config.save().then(() => {
+      this.alertService.presentToast('Your configuration has been saved.')
+    }
+
+    );
+
   }
 
 }

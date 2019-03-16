@@ -9,12 +9,19 @@ import { TeamDataService } from './services/team-data.service';
 import { AuthenticationService } from './services/authentication.service';
 import { SettingsService } from './services/settings.service';
 import { MatchDataService } from './services/match-data.service';
+import { EventsService } from './services/events.service';
+import { ConfigService } from './services/config.service';
 
 const privatePages = [
   {
     title: 'Match Scouting',
     url: '/private/matchscouting',
     icon: 'create'
+  },
+  {
+    title: 'Monitor',
+    url: '/private/scoutmonitor',
+    icon: 'eye'
   },
   {
     title: 'Configuration',
@@ -73,6 +80,8 @@ export class AppComponent {
     private authenticationService: AuthenticationService,
     private settingsService: SettingsService,
     private matchDataService: MatchDataService,
+    private eventsService: EventsService,
+    private configService: ConfigService,
     private router: Router
   ) {
     this.initializeApp();
@@ -82,8 +91,6 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.settingsService.load().then(() => {
         console.log('Settings loaded');
-        this.teamDataService.load();
-        //this.matchDataService.load();
       });
       
       this.statusBar.styleDefault();
@@ -93,6 +100,12 @@ export class AppComponent {
         if (state) {
           this.router.navigate(['private', 'matchscouting']);
           this.appPages = privatePages;
+
+          this.configService.load();
+          this.eventsService.load();
+          this.configService.load();
+          this.matchDataService.load(this.configService.config.selectedEvent,'qm');
+          this.teamDataService.load();
 
         } else {
           this.router.navigate(['home']);

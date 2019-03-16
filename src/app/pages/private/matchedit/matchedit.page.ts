@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigService } from '../../../services/config.service';
-import { MatchListItem } from '../../../interfaces/match';
 import { MatchDataService } from '../../../services/match-data.service';
 import { EventsService } from '../../../services/events.service';
+import { AlertService } from '../../../services/alert.service';
+import { MatchListItem } from '../../../interfaces/match';
 
 @Component({
   selector: 'app-matchedit',
@@ -30,7 +31,8 @@ export class MatcheditPage implements OnInit {
               private events: EventsService,
               private matchlist: MatchDataService, 
               private route: ActivatedRoute,
-              private router: Router
+              private router: Router,
+              private alertService: AlertService
               ) { 
 
   }
@@ -39,14 +41,18 @@ export class MatcheditPage implements OnInit {
     var currentEvent: any;
 
     this.matchId = this.route.snapshot.paramMap.get('matchid');
-    console.log('Match ID: ' + this.matchId);
+    //console.log('Match ID: ' + this.matchId);
 
-    console.log('onInit: ' + this.matchlist.matches.value);
-    console.log('MatchID as number: ' + Number(this.matchId));
+    //console.log('onInit: ' + this.matchlist.matches.value);
+    //console.log('MatchID as number: ' + Number(this.matchId));
 
-    console.log('Find: ' + this.matchlist.matches.value.find(match => match.matchId == Number(this.matchId)) );
+    //console.log('Find: '); 
+    //console.log(this.matchlist.matches.value.find(match => match.matchId == Number(this.matchId)) );
 
-    this.matchData = this.matchlist.matches.value.find(match => match.matchNo == Number(this.matchId));
+    this.matchData = this.matchlist.matches.value.find(match => match.matchId == Number(this.matchId));
+
+    //console.log("matchData:");
+    //console.log(this.matchData);
 
     currentEvent = this.events.events.value.find((event) => event.id == this.config.config.selectedEvent);
 
@@ -61,8 +67,10 @@ export class MatcheditPage implements OnInit {
   }
 
 
-  save() {
-    this.matchlist.updateMatch(this.config.config.selectedEvent, 'qm', this.matchData);
+  async save() {
+    let result = await this.matchlist.updateMatch(this.config.config.selectedEvent, 'qm', this.matchData);
+    this.alertService.presentToast('Match data has been updated.');
+
     this.router.navigate(['/private/matchlist']);
   }
 

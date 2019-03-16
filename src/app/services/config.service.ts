@@ -19,8 +19,10 @@ export class ConfigService {
 
   }
 
-  save() {
-
+  save(): Promise<boolean> {
+    return new Promise((resolve) => {
+      resolve(true);
+    });
   }
 
 }

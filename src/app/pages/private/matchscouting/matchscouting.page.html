@@ -14,9 +14,9 @@
       <ion-col size="2">
         <ion-item lines="none">
           <ion-label>Match Number</ion-label>
-          <ion-select name="MatchNum" interface="popover" [(ngModel)]="MatchNum">
-            <ion-select-option *ngFor="let match of matchNoArr; let i=index;" [value]="+i+1">
-              {{match}}</ion-select-option>
+          <ion-select name="MatchNum" interface="popover" [(ngModel)]="selectedMatch" (ionChange)="onChangeMatch()">
+            <ion-select-option *ngFor="let match of matchesArr; let i=index;" [value]="i">
+              Q{{match.matchNo}}</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-col>
@@ -25,7 +25,7 @@
           <ion-label>Team Number</ion-label>
           <ion-select name="TeamNum" interface="popover" [(ngModel)]="TeamNum">
             <ion-select-option></ion-select-option>
-            <ion-select-option *ngFor="let team of teams" value="{{team.number}}">{{team.number}}</ion-select-option>
+            <ion-select-option *ngFor="let team of matchTeamsList" value="{{team}}">{{team}}</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-col>
@@ -39,7 +39,7 @@
         </ion-item>
       </ion-col>
       <ion-col size=2>
-        <ion-button (click)="loadScoutData()">
+        <ion-button (click)="loadScoutData()" [disabled]="MatchNum==0 || TeamNum==0 || actScoutId==0">
           Select match
         </ion-button>
       </ion-col>
@@ -47,47 +47,8 @@
   </ion-grid>
 </ion-header>
 
-<ion-content padding>
+<ion-content *ngIf="displayQuestions" padding>
   <ion-grid>
-    <!--
-    <ion-row justify-content-center>
-      <ion-col size="4">
-        <ion-item>
-          <ion-label>Match Number</ion-label>
-          <ion-select name="MatchNum" interface="popover" [(ngModel)]="MatchNum">
-            <ion-select-option>1</ion-select-option>
-            <ion-select-option>2</ion-select-option>
-            <ion-select-option>3</ion-select-option>
-            <ion-select-option>4</ion-select-option>
-            <ion-select-option>5</ion-select-option>
-            <ion-select-option>6</ion-select-option>
-            <ion-select-option>7</ion-select-option>
-            <ion-select-option>8</ion-select-option>
-            <ion-select-option>9</ion-select-option>
-            <ion-select-option>10</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
-      <ion-col size="4">
-        <ion-item>
-          <ion-label>Team Number</ion-label>
-          <ion-select name="TeamNum" interface="popover" [(ngModel)]="TeamNum">
-            <ion-select-option></ion-select-option>
-            <ion-select-option *ngFor="let team of teams" value="{{team.number}}">{{team.number}}</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
-      <ion-col size="4">
-        <ion-item>
-          <ion-label>Student Name</ion-label>
-          <ion-select name="Scout" interface="popover" [(ngModel)]="actScoutId" (ionChange)="updateScoutName()">
-            <ion-select-option *ngFor="let scout of scouts" value="{{scout.scout_id}}">{{scout.firstname}}
-              {{scout.lastname}}</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    -->
     <ion-row justify-contex-center>
       <ion-col size="3">
         <h1>SandStorm</h1>
@@ -121,7 +82,7 @@
           <!-- Type 2 = selection list -->
           <ion-select *ngIf="question.questionType === 2" [(ngModel)]="question.answer" name="{{question.id}}"
             interface="popover">
-            <ion-select-option *ngFor="let questionItem of question.questionItems" value="{{questionItem.value}}">
+            <ion-select-option *ngFor="let questionItem of question.questionItems" value="{{questionItem.value}}" [selected]="questionItem.value==question.answer">
               {{questionItem.itemText}}</ion-select-option>
           </ion-select>
         </ion-item>
@@ -191,7 +152,7 @@
     </ion-row>
   </ion-grid>
 </ion-content>
-<footer>
+<footer *ngIf="displayQuestions">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button fill="solid" color="secondary" (click)="save()">Save

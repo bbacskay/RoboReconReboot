@@ -67,22 +67,31 @@ export class MatchDataService {
 
   }
 
-  public updateMatch(eventid: number, compLevel: string, data: MatchListItem) {
+  public updateMatch(eventid: number, compLevel: string, data: MatchListItem): Promise<boolean> {
     console.log('Update match data: ' + data.matchId);
-
-    this.http.post(this.appSettings.settings.value.apiPath + '/match/update.php', {
-      matchid: data.matchId,
-      blue_1: data.blue1TeamNumber,
-      blue_2: data.blue2TeamNumber,
-      blue_3: data.blue3TeamNumber,
-      red_1: data.red1TeamNumber,
-      red_2: data.red2TeamNumber,
-      red_3: data.red3TeamNumber
-    }
-    ).subscribe((result) => {
-      console.log(result);
-      this.load(eventid, compLevel);
+    return new Promise((resolve) => {
+      this.http.post(this.appSettings.settings.value.apiPath + '/match/update.php', {
+        matchid: data.matchId,
+        blue_1: data.blue1TeamNumber,
+        blue_2: data.blue2TeamNumber,
+        blue_3: data.blue3TeamNumber,
+        red_1: data.red1TeamNumber,
+        red_2: data.red2TeamNumber,
+        red_3: data.red3TeamNumber
+      }
+      ).subscribe(
+        (result) => {
+          console.log(result);
+          this.load(eventid, compLevel);
+          resolve(true);
+        },
+        (err) => {
+          console.log(err);
+          resolve(false);
+        }
+      );
     });
+
   }
 
   public deleteMatch(eventid: number, compLevel: string, matchId: number) {

@@ -53,3 +53,28 @@ export interface PrevNoteItem {
     matchNo: number;
     note: string;
 }
+
+export interface MonitorMatchData {
+    match_no: number;
+    ba_match_key: string;
+    blue_1: MonitorTeamDataItem;
+    blue_2: MonitorTeamDataItem;
+    blue_3: MonitorTeamDataItem;
+    red_1: MonitorTeamDataItem;
+    red_2: MonitorTeamDataItem;
+    red_3: MonitorTeamDataItem;
+}
+
+export interface MonitorTeamDataItem {
+    scouting_data_id: number;
+    teamNo: number;
+    scout: string;
+    questions: MonitorQuestionItem[];
+    note: string;
+}
+
+export interface MonitorQuestionItem {
+    id: string;
+    value: string;
+    ok: boolean;
+}
