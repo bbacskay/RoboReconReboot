@@ -26,11 +26,16 @@ const routes: Routes = [
     loadChildren: './matchedit/matchedit.module#MatcheditPageModule' 
   },
   { path: 'matchadd/:matchno',
-    loadChildren: './matchadd/matchadd.module#MatchaddPageModule' },
+    loadChildren: './matchadd/matchadd.module#MatchaddPageModule' 
+  },
   { path: 'scoutadd', 
-    loadChildren: './scoutadd/scoutadd.module#ScoutaddPageModule' },
+    loadChildren: './scoutadd/scoutadd.module#ScoutaddPageModule' 
+  },
   { path: 'scoutedit/:scoutid',
-    loadChildren: './scoutedit/scoutedit.module#ScouteditPageModule' }
+    loadChildren: './scoutedit/scoutedit.module#ScouteditPageModule' 
+  },
+  { path: 'scoutmonitor',
+    loadChildren: './scoutmonitor/scoutmonitor.module#ScoutmonitorPageModule' }
 ]
 
 @NgModule({

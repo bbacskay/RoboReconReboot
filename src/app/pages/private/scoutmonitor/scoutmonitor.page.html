@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Monitoring</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="refresh()">Refresh</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <ion-card *ngFor="let match of matches">
+    <ion-card-header color="medium">
+      <ion-card-title>Match {{match.match_no}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid class="blueAlliance">
+        <ion-row>
+          <ion-col size="1">Blue 1:</ion-col>
+          <ion-col size="1">{{match.blue_1?.teamNo}}</ion-col>
+          <ion-col size="2">{{match.blue_1?.scout}}</ion-col>
+          <ion-col size="auto">
+            <ion-text *ngFor="let question of match.blue_1?.questions" [ngClass]="getClass(question.ok)">
+              {{question.id}}: {{question.value}}</ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="1">Blue 2:</ion-col>
+          <ion-col size="1">{{match.blue_2?.teamNo}}</ion-col>
+          <ion-col size="2">{{match.blue_2?.scout}}</ion-col>
+          <ion-col size="auto">
+            <ion-text *ngFor="let question of match.blue_2?.questions" [ngClass]="getClass(question.ok)">
+              {{question.id}}: {{question.value}}</ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="1">Blue 3:</ion-col>
+          <ion-col size="1">{{match.blue_3?.teamNo}}</ion-col>
+          <ion-col size="2">{{match.blue_3?.scout}}</ion-col>
+          <ion-col size="auto">
+            <ion-text *ngFor="let question of match.blue_3?.questions" [ngClass]="getClass(question.ok)">
+              {{question.id}}: {{question.value}} </ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid class="redAlliance">
+        <ion-row>
+          <ion-col size="1">Red 1:</ion-col>
+          <ion-col size="1">{{match.red_1?.teamNo}}</ion-col>
+          <ion-col size="2">{{match.red_1?.scout}}</ion-col>
+          <ion-col size="auto">
+            <ion-text *ngFor="let question of match.red_1?.questions" [ngClass]="getClass(question.ok)">
+              {{question.id}}: {{question.value}} </ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="1">Red 2:</ion-col>
+          <ion-col size="1">{{match.red_2?.teamNo}}</ion-col>
+          <ion-col size="2">{{match.red_2?.scout}}</ion-col>
+          <ion-col size="auto">
+            <ion-text *ngFor="let question of match.red_2?.questions" [ngClass]="getClass(question.ok)">
+              {{question.id}}: {{question.value}} </ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="1">Red 3:</ion-col>
+          <ion-col size="1">{{match.red_3?.teamNo}}</ion-col>
+          <ion-col size="2">{{match.red_3?.scout}}</ion-col>
+          <ion-col size="auto">
+            <ion-text *ngFor="let question of match.red_3?.questions" [ngClass]="getClass(question.ok)">
+              {{question.id}}: {{question.value}} </ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>
