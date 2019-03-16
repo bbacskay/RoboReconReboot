@@ -123,24 +123,29 @@ export class MatchscoutingPage implements OnInit {
           id: 'SQ6',
           questionText: 'What level did they place the cargo?',
           questionType: 2,
-          questionItems: [{
-            value: 1,
-            itemText: 'Cargo Ship'
-          },
-          {
-            value: 2,
-            itemText: 'Rocket Ship LV1'
-          },
-          {
-            value: 3,
-            itemText: 'Rocket Ship LV2'
-          },
-          {
-            value: 4,
-            itemText: 'Rocket Ship LV3'
-          }
+          questionItems: [
+            {
+              value: 0,
+              itemText: 'Did not place cargo'
+            },
+            {
+              value: 1,
+              itemText: 'Cargo Ship'
+            },
+            {
+              value: 2,
+              itemText: 'Rocket Ship LV1'
+            },
+            {
+              value: 3,
+              itemText: 'Rocket Ship LV2'
+            },
+            {
+              value: 4,
+              itemText: 'Rocket Ship LV3'
+            }
           ],
-          answer: ''
+          answer: 0
         }
       ],
 
@@ -185,20 +190,25 @@ export class MatchscoutingPage implements OnInit {
         id: 'TQ4',
         questionText: 'How do they pickup hatches?',
         questionType: 2,
-        questionItems: [{
-          value: 1,
-          itemText: 'The Floor'
-        },
-        {
-          value: 2,
-          itemText: 'Feeder'
-        },
-        {
-          value: 3,
-          itemText: 'Both'
-        }
+        questionItems: [
+          {
+            value: 0,
+            itemText: 'No pickup'
+          },
+          {
+            value: 1,
+            itemText: 'The Floor'
+          },
+          {
+            value: 2,
+            itemText: 'Feeder'
+          },
+          {
+            value: 3,
+            itemText: 'Both'
+          }
         ],
-        answer: ''
+        answer: 0
       },
       {
         id: 'TQ5',
@@ -343,7 +353,7 @@ export class MatchscoutingPage implements OnInit {
       this.MatchId = this.matchesArr[this.selectedMatch].matchId;
       this.MatchNum = this.matchesArr[this.selectedMatch].matchNo;
 
-      this.matchTeamsList = [ 
+      this.matchTeamsList = [
         this.matchesArr[this.selectedMatch].blue1TeamNumber,
         this.matchesArr[this.selectedMatch].blue2TeamNumber,
         this.matchesArr[this.selectedMatch].blue3TeamNumber,
@@ -351,7 +361,7 @@ export class MatchscoutingPage implements OnInit {
         this.matchesArr[this.selectedMatch].red2TeamNumber,
         this.matchesArr[this.selectedMatch].red3TeamNumber
       ];
-      this.matchTeamsList.sort(function(a, b){return a-b});
+      this.matchTeamsList.sort(function (a, b) { return a - b });
 
       console.log("Match changed. SelectedMatch:" + this.selectedMatch + " MatchNo:" + this.MatchNum + "  MatchId:" + this.MatchId);
     } else {
