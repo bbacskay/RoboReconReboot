@@ -48,13 +48,13 @@ const privatePages = [
 const publicPages = [
   {
     title: 'Home',
-    url:   '/home',
-    icon:  'home'
+    url: '/home',
+    icon: 'home'
   },
   {
     title: 'Settings',
-    url:   '/settings',
-    icon:  'settings'
+    url: '/settings',
+    icon: 'settings'
   },
   {
     title: 'Login',
@@ -68,7 +68,7 @@ const publicPages = [
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
-  
+
 
   public appPages = publicPages;
 
@@ -91,27 +91,30 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.settingsService.load().then(() => {
         console.log('Settings loaded');
+
+        this.authenticationService.authenticationState.subscribe(state => {
+          if (state) {
+            this.router.navigate(['private', 'matchscouting']);
+            this.appPages = privatePages;
+
+            this.configService.load().then(() => {
+              this.matchDataService.load(this.configService.config.selectedEvent, 'qm');
+            });
+
+            this.eventsService.load();
+            this.teamDataService.load();
+
+          } else {
+            this.router.navigate(['home']);
+            this.appPages = publicPages;
+          }
+        });
       });
-      
+
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      this.authenticationService.authenticationState.subscribe(state => {
-        if (state) {
-          this.router.navigate(['private', 'matchscouting']);
-          this.appPages = privatePages;
 
-          this.configService.load();
-          this.eventsService.load();
-          this.configService.load();
-          this.matchDataService.load(this.configService.config.selectedEvent,'qm');
-          this.teamDataService.load();
-
-        } else {
-          this.router.navigate(['home']);
-          this.appPages = publicPages;
-        }
-      });
 
     });
   }
