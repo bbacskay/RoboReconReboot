@@ -13,6 +13,7 @@ export class ScoutmonitorPage implements OnInit {
 
   public matches: MonitorMatchData[] = [];
   public event: string;
+  public loading: boolean = false;
 
   constructor(private scoutingData: MatchscoutingDataService,
               private config: ConfigService,
@@ -22,6 +23,8 @@ export class ScoutmonitorPage implements OnInit {
     this.scoutingData.monitorData.subscribe((data) => {
       this.matches = data;
       this.matches.sort((a,b) => b.match_no - a.match_no);
+
+      this.loading = false;
     });
 
     this.eventlist.events.subscribe((data) => {
@@ -58,6 +61,7 @@ export class ScoutmonitorPage implements OnInit {
 
 
   public refresh() {
+    this.loading = true;
     this.scoutingData.monitor();
   }
 
