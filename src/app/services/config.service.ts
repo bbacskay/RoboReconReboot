@@ -55,6 +55,25 @@ export class ConfigService {
 
   save(): Promise<boolean> {
     return new Promise((resolve) => {
+      let configArr: ConfigListItem[] = [
+        {
+          name: 'ownTeam',
+          value: this.config.ownTeam
+        },
+        {
+          name: 'selectedEvent',
+          value: this.config.selectedEvent
+        }
+      ];
+
+      this.http.post(this.appSettings.settings.value.apiPath + '/configuration/save.php', {
+        configArr
+      }
+      ).subscribe((result) => {
+        console.log(result);
+        this.load();
+      });
+
       resolve(true);
     });
   }
