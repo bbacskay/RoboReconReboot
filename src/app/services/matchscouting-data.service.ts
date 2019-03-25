@@ -344,6 +344,7 @@ export class MatchscoutingDataService {
     return new Promise((resolve) => {
       this.http.post(this.appSettings.settings.value.apiPath + '/matchdata/update.php', {
         id: data.id,
+        scoutid: data.scout_id,
         data: data.data,
         note: data.note
       }
