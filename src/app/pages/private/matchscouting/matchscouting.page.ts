@@ -61,7 +61,7 @@ export class MatchscoutingPage implements OnInit {
         },
         {
           id: 'SQ2',
-          questionText: 'What game peice did they start with?',
+          questionText: 'What game piece did they start with?',
           questionType: 2,
           questionItems: [{
             value: 0,
@@ -87,7 +87,7 @@ export class MatchscoutingPage implements OnInit {
         },
         {
           id: 'SQ4',
-          questionText: 'What level did they place the hatch',
+          questionText: 'What level did they place the hatch?',
           questionType: 2,
           questionItems: [{
             value: 0,
@@ -158,9 +158,14 @@ export class MatchscoutingPage implements OnInit {
       },
       {
         id: 'TQ2',
-        questionText: 'What was the highest level they acheived?',
+        questionText: 'What was the highest level they achieved?',
         questionType: 2,
-        questionItems: [{
+        questionItems: [
+          {
+            value: 0,
+            itemText: 'None'
+          },
+          {
           value: 1,
           itemText: 'Cargo ship'
         },
@@ -177,7 +182,7 @@ export class MatchscoutingPage implements OnInit {
           itemText: 'Rocket ship LV3'
         }
         ],
-        answer: ''
+        answer: 0
       },
       {
         id: 'TQ3',
@@ -227,7 +232,7 @@ export class MatchscoutingPage implements OnInit {
           itemText: '>20s'
         }
         ],
-        answer: ''
+        answer: 0
       }
       ],
 
@@ -237,23 +242,23 @@ export class MatchscoutingPage implements OnInit {
           questionText: 'What level did they achieve?',
           questionType: 2,
           questionItems: [{
-            value: 1,
+            value: 0,
             itemText: 'No attempt'
           },
           {
-            value: 2,
+            value: 1,
             itemText: 'LV1'
           },
           {
-            value: 3,
+            value: 2,
             itemText: 'LV2'
           },
           {
-            value: 4,
+            value: 3,
             itemText: 'LV3'
           }
           ],
-          answer: ''
+          answer: 0
         },
         {
           id: 'EQ2',
@@ -276,7 +281,7 @@ export class MatchscoutingPage implements OnInit {
             itemText: '>15s'
           }
           ],
-          answer: ''
+          answer: 0
         }/*,
     {
       id: 'EQ3',
