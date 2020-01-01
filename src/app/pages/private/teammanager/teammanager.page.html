@@ -8,7 +8,7 @@
 </ion-header>
 
 <div wrap style="display: flex; flex: 1">
-  <ion-content padding style="flex: 1" [scrollY]="true" >
+  <ion-content class="ion-padding" style="flex: 1" [scrollY]="true" >
     <ion-card *ngFor="let team of teams">
       <ion-item>
         <b>#{{team.number}}</b> &nbsp;{{team.name}}
@@ -24,7 +24,7 @@
     </ion-card>
   </ion-content>
 
-  <ion-content padding style="flex: 1" >
+  <ion-content class="ion-padding" style="flex: 1" >
     <form #teamEditForm="ngForm">
       <ion-item>
         <ion-label>Team number</ion-label>
