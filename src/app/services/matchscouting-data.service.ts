@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { SettingsService } from './settings.service';
 import { ScoutingData, PrevNoteItem, MonitorMatchData } from '../interfaces/match';
 import { ConfigService } from './config.service';
+import { ApiResponse } from '../interfaces/apiresponse';
 
 const tmpMonitorData: MonitorMatchData[] = [
   {
@@ -340,7 +341,7 @@ export class MatchscoutingDataService {
     });
   }
 
-  public save(data: ScoutingData): Promise<boolean> {
+  public save(data: ScoutingData): Promise<string> {
     return new Promise((resolve) => {
       this.http.post(this.appSettings.settings.value.apiPath + '/matchdata/update.php', {
         id: data.id,
@@ -348,12 +349,13 @@ export class MatchscoutingDataService {
         data: data.data,
         note: data.note
       }
-      ).subscribe((result) => {
+      ).subscribe((result: ApiResponse) => {
         console.log(result);
+        resolve(result.message);
         this.load();
       });
 
-      resolve(true);
+      
     });
 
   }

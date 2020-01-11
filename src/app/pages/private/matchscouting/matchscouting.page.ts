@@ -7,6 +7,7 @@ import { TeamDataService } from '../../../services/team-data.service';
 import { MatchscoutingDataService } from '../../../services/matchscouting-data.service';
 import { MatchDataService } from '../../../services/match-data.service';
 import { ConfigService } from '../../../services/config.service';
+import { AlertService } from '../../../services/alert.service';
 
 
 @Component({
@@ -308,7 +309,8 @@ export class MatchscoutingPage implements OnInit {
     private teamDataService: TeamDataService,
     private scoutingData: MatchscoutingDataService,
     private matchData: MatchDataService,
-    private configService: ConfigService
+    private configService: ConfigService,
+    private alertService: AlertService
   ) {
     this.teamDataService.teams.subscribe((data) => {
       this.teams = data;
@@ -432,6 +434,9 @@ export class MatchscoutingPage implements OnInit {
 
 
   public loadScoutData() {
+    console.log('loadScoutData called. MatchId:' + this.MatchId + 
+                '  Teamnum:' + this.TeamNum + 
+                '  ScoutId:' + this.actScoutId);
     this.scoutingData.read(this.MatchId, this.TeamNum, this.actScoutId).then((data) => {
       console.log('Matchscouting: received data:');
       console.log(data);
@@ -560,8 +565,9 @@ export class MatchscoutingPage implements OnInit {
 
 
     console.log(scoutingData);
-    this.scoutingData.save(scoutingData).then(() => {
+    this.scoutingData.save(scoutingData).then((response) => {
       console.log('Scouting data saved');
+      this.alertService.presentToast(response);
     });
   }
 
