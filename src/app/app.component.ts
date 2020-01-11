@@ -11,6 +11,7 @@ import { SettingsService } from './services/settings.service';
 import { MatchDataService } from './services/match-data.service';
 import { EventsService } from './services/events.service';
 import { ConfigService } from './services/config.service';
+import { ThemeService } from './services/theme.service';
 
 const privatePages = [
   {
@@ -82,7 +83,8 @@ export class AppComponent {
     private matchDataService: MatchDataService,
     private eventsService: EventsService,
     private configService: ConfigService,
-    private router: Router
+    private router: Router,
+    private themeService: ThemeService
   ) {
     this.initializeApp();
   }
@@ -91,6 +93,8 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.settingsService.load().then(() => {
         console.log('Settings loaded');
+
+        this.themeService.setAppTheme(this.settingsService.settings.value.darkMode);
 
         this.authenticationService.authenticationState.subscribe(state => {
           if (state) {

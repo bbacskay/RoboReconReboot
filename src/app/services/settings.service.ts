@@ -11,7 +11,8 @@ export class SettingsService {
   settings = new BehaviorSubject(<Settings>{
     apiPath: 'http://scoutpi/api',
     scoutAlliance: 'blue',
-    scoutPosition: 'left'
+    scoutPosition: 'left',
+    darkMode: false
   });
 
   constructor(private storage: Storage) {

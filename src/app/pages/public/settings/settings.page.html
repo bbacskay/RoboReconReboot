@@ -29,6 +29,10 @@
           <ion-select-option>right</ion-select-option>
         </ion-select>
       </ion-item>
+      <ion-item>
+        <ion-label>Dark theme</ion-label>
+        <ion-toggle name="darkTheme" [(ngModel)]="appSettings.darkMode" (ionChange)="updateTheme()"></ion-toggle>
+      </ion-item>
     </ion-list>
   </form>
 </ion-content>
