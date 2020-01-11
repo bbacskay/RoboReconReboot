@@ -27,6 +27,7 @@ export class TeamDataService {
         this.teams.next(data);
       },
       (err) => {
+        this.teams.next([]);
         console.log(err);
       },
       () => {

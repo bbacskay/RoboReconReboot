@@ -7,9 +7,9 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="ion-padding">
   <ion-grid class="matchgrid" fixed="no">
-    <ion-row justify-content-center>
+    <ion-row class="ion-justify-content-center">
       <ion-col size="1"><b>Match no.</b></ion-col>
       <ion-col class="blue" size="1"><b>Blue 1</b></ion-col>
       <ion-col class="blue" size="1"><b>Blue 2</b></ion-col>
@@ -17,9 +17,13 @@
       <ion-col class="red" size="1"><b>Red 1</b></ion-col>
       <ion-col class="red" size="1"><b>Red 2</b></ion-col>
       <ion-col class="red" size="1"><b>Red 3</b></ion-col>
-      <ion-col size="2">&nbsp;</ion-col>
+      <ion-col size="2">
+        <ion-button *ngIf="matches.length==0" [routerLink]="'/private/matchadd/1'" [routerDirection]="'forward'" fill="clear" color="dark" size="small">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+      </ion-col>
     </ion-row>
-    <ion-row justify-content-center *ngFor="let matchitem of matches ; let i = index" align-items-center>
+    <ion-row class="ion-justify-content-center ion-align-items-center" *ngFor="let matchitem of matches ; let i = index">
       <ion-col size="1">{{matchitem.matchNo}}</ion-col>
       <ion-col class="blue" size="1">{{matchitem.blue1TeamNumber}}</ion-col>
       <ion-col class="blue" size="1">{{matchitem.blue2TeamNumber}}</ion-col>
