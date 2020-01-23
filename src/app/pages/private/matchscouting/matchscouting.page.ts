@@ -39,12 +39,12 @@ export class MatchscoutingPage implements OnInit {
   public displayQuestions: boolean = false;
 
   questions: {
-    Sandstorm: QuestionItem[],
+    Autonomous: QuestionItem[],
     Teleop: QuestionItem[],
     EndGame: QuestionItem[]
   } = {
 
-      Sandstorm: [
+      Autonomous: [
         {
           id: 'SQ1',
           questionText: 'What level did they start from?',
@@ -381,8 +381,8 @@ export class MatchscoutingPage implements OnInit {
     switch (questionSection) {
       case 0:
         // SandStorm
-        if (this.questions.Sandstorm[numValue].answer > 0) {
-          this.questions.Sandstorm[numValue].answer--;
+        if (this.questions.Autonomous[numValue].answer > 0) {
+          this.questions.Autonomous[numValue].answer--;
         }
         break;
       case 1:
@@ -405,7 +405,7 @@ export class MatchscoutingPage implements OnInit {
     switch (questionSection) {
       case 0:
         // SandStorm
-        this.questions.Sandstorm[numValue].answer++;
+        this.questions.Autonomous[numValue].answer++;
         break;
       case 1:
         // Teleop
@@ -447,7 +447,7 @@ export class MatchscoutingPage implements OnInit {
       if (data.data != null) {
         // Restore saved answers from the received data
         data.data.forEach((response) => {
-          this.questions.Sandstorm.forEach((question) => {
+          this.questions.Autonomous.forEach((question) => {
             if (question.id == response.id) {
               question.answer = response.response;
             }
@@ -484,7 +484,7 @@ export class MatchscoutingPage implements OnInit {
    * Setting the answers to 0 or ''
    */
   public resetScoutData() {
-    this.questions.Sandstorm.forEach((question) => {
+    this.questions.Autonomous.forEach((question) => {
       switch (question.questionType) {
         case 1:
         case 2:
@@ -537,7 +537,7 @@ export class MatchscoutingPage implements OnInit {
     console.log('scoutingDataId:' + this.scoutingDataId);
 
     //Save Sandstorm answers
-    this.questions.Sandstorm.forEach((question) => {
+    this.questions.Autonomous.forEach((question) => {
       var response: ResponseData = { id: '', response: '' };
       response.id = question.id;
       response.response = question.answer;
