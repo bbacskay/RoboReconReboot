@@ -51,7 +51,7 @@
   <ion-grid>
     <ion-row justify-contex-center>
       <ion-col size="3">
-        <h1>SandStorm</h1>
+        <h1>Autonomous</h1>
       </ion-col>
       <ion-col size="3">
         <h1>Teleop</h1>
@@ -65,7 +65,7 @@
     </ion-row>
     <ion-row justify-contex-center>
       <ion-col size="3">
-        <ion-item *ngFor="let question of questions.Sandstorm; let i=index;">
+        <ion-item *ngFor="let question of questions.Autonomous; let i=index;">
           <ion-label position="stacked" text-wrap>{{question.questionText}}</ion-label>
           <!-- Type 0 = text input field -->
           <ion-input *ngIf="question.questionType === 0" [(ngModel)]="question.answer" type="text"
