@@ -46,193 +46,95 @@ export class MatchscoutingPage implements OnInit {
 
       Autonomous: [
         {
-          id: 'SQ1',
-          questionText: 'What level did they start from?',
-          questionType: 2,
-          questionItems: [{
-            value: 1,
-            itemText: 'level 1',
-          },
-          {
-            value: 2,
-            itemText: 'level 2'
-          }
-          ],
-          answer: 0
-        },
-        {
-          id: 'SQ2',
-          questionText: 'What game piece did they start with?',
+          id: 'AQ1',
+          questionText: 'Did they cross the auto line?',
           questionType: 2,
           questionItems: [{
             value: 0,
-            itemText: 'None'
+            itemText: 'NO',
           },
           {
             value: 1,
-            itemText: 'Hatch'
-          },
-          {
-            value: 2,
-            itemText: 'Cargo'
+            itemText: 'YES'
           }
           ],
           answer: 0
         },
         {
-          id: 'SQ3',
-          questionText: 'How many hatches were placed?',
+          id: 'AQ2',
+          questionText: 'How many Power Cells did they get in the low port?',
+          questionType: 1,
+          questionItems: [],
+          answer: 0
+        },
+        {
+          id: 'AQ3',
+          questionText: 'How many Power Cells did they get in the high port?',
           questionType: 1,
           questionItems: [],
           answer: 0,
         },
-        {
-          id: 'SQ4',
-          questionText: 'What level did they place the hatch?',
-          questionType: 2,
-          questionItems: [{
-            value: 0,
-            itemText: 'Did not place any hatch.'
-          },
-          {
-            value: 1,
-            itemText: 'Cargo Ship'
-          },
-          {
-            value: 2,
-            itemText: 'Rocket Ship LV1'
-          },
-          {
-            value: 3,
-            itemText: 'Rocket Ship LV2'
-          },
-          {
-            value: 4,
-            itemText: 'Rocket Ship LV3'
-          }
-          ],
-          answer: 0
-        },
-        {
-          id: 'SQ5',
-          questionText: 'How much Cargo was placed?',
-          questionType: 1,
-          questionItems: [],
-          answer: 0
-        },
-        {
-          id: 'SQ6',
-          questionText: 'What level did they place the cargo?',
-          questionType: 2,
-          questionItems: [
-            {
-              value: 0,
-              itemText: 'Did not place cargo'
-            },
-            {
-              value: 1,
-              itemText: 'Cargo Ship'
-            },
-            {
-              value: 2,
-              itemText: 'Rocket Ship LV1'
-            },
-            {
-              value: 3,
-              itemText: 'Rocket Ship LV2'
-            },
-            {
-              value: 4,
-              itemText: 'Rocket Ship LV3'
-            }
-          ],
-          answer: 0
-        }
       ],
 
       Teleop: [{
         id: 'TQ1',
-        questionText: 'How many hatches were placed?',
+        questionText: 'How many Power Cells did they get in the low port?',
         questionType: 1,
         questionItems: [],
         answer: 0
       },
       {
         id: 'TQ2',
-        questionText: 'What was the highest level they achieved?',
-        questionType: 2,
-        questionItems: [
-          {
-            value: 0,
-            itemText: 'None'
-          },
-          {
-          value: 1,
-          itemText: 'Cargo ship'
-        },
-        {
-          value: 2,
-          itemText: 'Rocket ship LV1'
-        },
-        {
-          value: 3,
-          itemText: 'Rocket ship LV2'
-        },
-        {
-          value: 4,
-          itemText: 'Rocket ship LV3'
-        }
-        ],
-        answer: 0
-      },
-      {
-        id: 'TQ3',
-        questionText: 'How much cargo was placed?',
+        questionText: 'How many Power Cells did they get in the high port?',
         questionType: 1,
         questionItems: [],
         answer: 0
       },
       {
-        id: 'TQ4',
-        questionText: 'How do they pickup hatches?',
+        id: 'TQ3',
+        questionText: 'Did they do control panel level 2?',
         questionType: 2,
         questionItems: [
           {
             value: 0,
-            itemText: 'No pickup'
+            itemText: 'N/A'
           },
           {
             value: 1,
-            itemText: 'The Floor'
+            itemText: 'NO'
           },
           {
             value: 2,
-            itemText: 'Feeder'
+            itemText: 'YES'
+          }
+        ],
+        answer: 0
+      },
+      {
+        id: 'TQ4',
+        questionText: 'Did they do control panel level 3?',
+        questionType: 2,
+        questionItems: [
+          {
+            value: 0,
+            itemText: 'N/A'
           },
           {
-            value: 3,
-            itemText: 'Both'
+            value: 1,
+            itemText: 'NO'
+          },
+          {
+            value: 2,
+            itemText: 'YES'
           }
         ],
         answer: 0
       },
       {
         id: 'TQ5',
-        questionText: 'Cycle time',
-        questionType: 2,
-        questionItems: [{
-          value: 1,
-          itemText: '<10s'
-        },
-        {
-          value: 2,
-          itemText: '10-20s'
-        },
-        {
-          value: 3,
-          itemText: '>20s'
-        }
-        ],
+        questionText: 'How many times did they defend?',
+        questionType: 1,
+        questionItems: [],
         answer: 0
       }
       ],
@@ -240,65 +142,23 @@ export class MatchscoutingPage implements OnInit {
       EndGame: [
         {
           id: 'EQ1',
-          questionText: 'What level did they achieve?',
+          questionText: 'What did they do in endgame?',
           questionType: 2,
           questionItems: [{
             value: 0,
-            itemText: 'No attempt'
+            itemText: 'None'
           },
           {
             value: 1,
-            itemText: 'LV1'
+            itemText: 'Climb'
           },
           {
             value: 2,
-            itemText: 'LV2'
-          },
-          {
-            value: 3,
-            itemText: 'LV3'
+            itemText: 'Climb with balance'
           }
           ],
           answer: 0
-        },
-        {
-          id: 'EQ2',
-          questionText: 'How long did they take?',
-          questionType: 2,
-          questionItems: [{
-            value: 1,
-            itemText: '0s'
-          },
-          {
-            value: 2,
-            itemText: '<5s'
-          },
-          {
-            value: 3,
-            itemText: '5-15s'
-          },
-          {
-            value: 4,
-            itemText: '>15s'
-          }
-          ],
-          answer: 0
-        }/*,
-    {
-      id: 'EQ3',
-      questionText: 'Did another team assist them?',
-      questionType: 2,
-      questionItems: [{
-        value: 1,
-        itemText: 'Yes'
-      },
-      {
-        value: 2,
-        itemText: 'No'
-      }
-      ],
-      answer: ''
-    }*/
+        }
       ]
     }
 
