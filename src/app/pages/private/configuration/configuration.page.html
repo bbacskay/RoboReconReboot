@@ -14,11 +14,14 @@
         <ion-label>Own team</ion-label>
         <ion-input name="ownTeam" type="number" inputmode="number" [(ngModel)]="config.config.ownTeam"></ion-input>
       </ion-item>
-      <ion-item>
+      <ion-item class="item-multiple-inputs">
         <ion-label>Event</ion-label>
         <ion-select interface="popover" name="selectedEvent" [(ngModel)]="config.config.selectedEvent">
           <ion-select-option *ngFor="let event of events.eventsList" [value]="+(event.id)">{{event.name}}</ion-select-option>
         </ion-select>
+        <ion-button [routerLink]="'/private/matchadd/1'" [routerDirection]="'forward'" fill="clear" color="dark" size="small">
+          <ion-icon slot="end" name="add"></ion-icon>
+        </ion-button>
       </ion-item>
     </ion-list>
   </form>

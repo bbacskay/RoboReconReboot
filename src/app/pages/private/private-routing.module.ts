@@ -35,7 +35,15 @@ const routes: Routes = [
     loadChildren: './scoutedit/scoutedit.module#ScouteditPageModule' 
   },
   { path: 'scoutmonitor',
-    loadChildren: './scoutmonitor/scoutmonitor.module#ScoutmonitorPageModule' }
+    loadChildren: './scoutmonitor/scoutmonitor.module#ScoutmonitorPageModule' },
+  {
+    path: 'eventadd',
+    loadChildren: () => import('./eventadd/eventadd.module').then( m => m.EventaddPageModule)
+  },
+  {
+    path: 'eventlist',
+    loadChildren: () => import('./eventlist/eventlist.module').then( m => m.EventlistPageModule)
+  }
 ]
 
 @NgModule({

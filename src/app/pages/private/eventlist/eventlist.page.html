@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Event Manager</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="padding">
+  <ion-card *ngFor="let event of eventList">
+    <ion-item>
+      <ion-icon slot="start" name="pin"></ion-icon>
+      <b>{{event.name}}</b> &nbsp;- {{event.startDate}} {{event.endDate}}
+      <ion-buttons slot="end">
+        <ion-button [routerLink]="'/private/eventedit/'+event.id" [routerDirection]="'forward'">
+          <ion-icon slot="icon-only" name="create"></ion-icon>
+        </ion-button>
+        <ion-button (click)="presentAlertConfirmDelete(event)">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-card>
+</ion-content>

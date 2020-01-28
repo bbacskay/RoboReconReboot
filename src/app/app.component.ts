@@ -30,6 +30,11 @@ const privatePages = [
     icon: 'settings'
   },
   {
+    title: 'Event Manager',
+    url: '/private/eventlist',
+    icon: 'pin'
+  },
+  {
     title: 'Team Manager',
     url: '/private/teammanager',
     icon: 'people'

@@ -13,7 +13,7 @@ export class EventsService {
 
   public events: BehaviorSubject<Event[]> = new BehaviorSubject([]);
 
-  constructor(private settings: SettingsService, private http: HttpClient) { 
+  constructor(private appSettings: SettingsService, private http: HttpClient) { 
 
   }
 
@@ -23,7 +23,7 @@ export class EventsService {
   load() {
     var tmpEvents: Event[] = [];
 
-    this.http.get<Event[]>(this.settings.settings.value.apiPath + '/event/read.php').subscribe(
+    this.http.get<Event[]>(this.appSettings.settings.value.apiPath + '/event/read.php').subscribe(
       (data) => {
         console.log(data);
         this.events.next(data);
@@ -42,7 +42,20 @@ export class EventsService {
    * Add new event
    */
   add( event: Event) {
+    console.log('Add event: ' + event.name + ' (' + event.baEventKey + ')');
 
+
+    this.http.post(this.appSettings.settings.value.apiPath + '/event/create.php', {
+      baEventKey: event.baEventKey,
+      name: event.name,
+      location: event.location,
+      startDate: event.startDate,
+      endDate: event.endDate
+    }
+    ).subscribe((result) => {
+      console.log(result);
+      this.load();
+    });
   }
 
   /**
@@ -50,7 +63,7 @@ export class EventsService {
    * @param {number} id
    */
   delete( id: number) {
-
+    console.log("Delete event " + id + " requested.");
   }
 
   update( event: Event ) {
