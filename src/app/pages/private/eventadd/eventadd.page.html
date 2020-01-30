@@ -1,9 +1,46 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>eventadd</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/private/eventlist"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add new event</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-lg="4" size-md="6" size-sm="9">
+        <ion-list lines="full">
+          <ion-item>
+            <ion-label>Event Name</ion-label>
+            <ion-input slot="end" type="text" placeholder="Event Name" [(ngModel)]="newEvent.name"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Blue Alliance Event Key</ion-label>
+            <ion-input slot="end" type="text" placeholder="Ex: YYYYabcd" [(ngModel)]="newEvent.baEventKey"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Location</ion-label>
+            <ion-input slot="end" type="text" placeholder="Event Address" [(ngModel)]="newEvent.location"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Event Start Date</ion-label>
+            <ion-datetime slot="end" [(ngModel)]="newEvent.startDate"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label>Event End Date</ion-label>
+            <ion-datetime slot="end" [(ngModel)]="newEvent.endDate"></ion-datetime>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+<ion-footer>
+  <ion-button (click)="add()" expand="block">Add
+    <ion-icon slot="start" name="add"></ion-icon>
+  </ion-button>
+</ion-footer>
+
