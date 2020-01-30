@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Event } from '../../../interfaces/event';
+import { EventsService } from '../../../services/events.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-eventadd',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventaddPage implements OnInit {
 
-  constructor() { }
+  public newEvent: Event = <Event>{
+    id: 0,
+    baEventKey: '',
+    name: '',
+    location: '',
+    startDate: '',
+    endDate: ''
+  }
+
+  constructor(private eventService: EventsService, private router: Router) { }
 
   ngOnInit() {
+  }
+
+  public add() {
+    this.eventService.add(this.newEvent);
+    this.router.navigate(['/private/eventlist']);
+    console.log (this.newEvent);
   }
 
 }
