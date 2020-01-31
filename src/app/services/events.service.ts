@@ -41,20 +41,25 @@ export class EventsService {
   /**
    * Add new event
    */
-  add( event: Event) {
+  add( event: Event) :Promise<boolean> {
     console.log('Add event: ' + event.name + ' (' + event.baEventKey + ')');
-
-
-    this.http.post(this.appSettings.settings.value.apiPath + '/event/create.php', {
-      baEventKey: event.baEventKey,
-      name: event.name,
-      location: event.location,
-      startDate: event.startDate,
-      endDate: event.endDate
-    }
-    ).subscribe((result) => {
-      console.log(result);
-      this.load();
+    return new Promise((resolve) => {
+      this.http.post(this.appSettings.settings.value.apiPath + '/event/create.php', {
+        baEventKey: event.baEventKey,
+        name: event.name,
+        location: event.location,
+        startDate: event.startDate,
+        endDate: event.endDate
+      }
+      ).subscribe((result) => {
+        console.log(result);
+        this.load();
+        resolve(true);
+      },
+      (err) => {
+        console.log(err);
+        resolve(false);
+      });
     });
   }
 
