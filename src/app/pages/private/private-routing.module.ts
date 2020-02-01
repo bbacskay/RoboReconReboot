@@ -37,12 +37,16 @@ const routes: Routes = [
   { path: 'scoutmonitor',
     loadChildren: './scoutmonitor/scoutmonitor.module#ScoutmonitorPageModule' },
   {
+     path: 'eventlist',
+    loadChildren: () => import('./eventlist/eventlist.module').then( m => m.EventlistPageModule)
+  },
+  {
     path: 'eventadd',
     loadChildren: () => import('./eventadd/eventadd.module').then( m => m.EventaddPageModule)
   },
   {
-    path: 'eventlist',
-    loadChildren: () => import('./eventlist/eventlist.module').then( m => m.EventlistPageModule)
+    path: 'eventedit/:eventid',
+    loadChildren: () => import('./eventedit/eventedit.module').then( m => m.EventeditPageModule)
   }
 ]
 

@@ -71,7 +71,20 @@ export class EventsService {
     console.log("Delete event " + id + " requested.");
   }
 
-  update( event: Event ) {
-
+  public update(event: Event) {
+    console.log('Update-event');
+    console.log(event);
+    this.http.post(this.appSettings.settings.value.apiPath + '/event/update.php', {
+      id: event.id,
+      baEventKey: event.baEventKey,
+      name: event.name,
+      location: event.location,
+      startDate: event.startDate,
+      endDate: event.endDate
+    }
+    ).subscribe((result) => {
+      console.log(result);
+      this.load();
+    });
   }
 }
