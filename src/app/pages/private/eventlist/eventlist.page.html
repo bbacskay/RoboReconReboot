@@ -11,7 +11,7 @@
   <ion-card *ngFor="let event of eventList">
     <ion-item>
       <ion-icon slot="start" name="pin"></ion-icon>
-      <b>{{event.name}}</b> &nbsp;- {{event.startDate}} {{event.endDate}}
+      <ion-label><b>{{event.name}}</b></ion-label>
       <ion-buttons slot="end">
         <ion-button [routerLink]="'/private/eventedit/'+event.id" [routerDirection]="'forward'">
           <ion-icon slot="icon-only" name="create"></ion-icon>
@@ -21,6 +21,12 @@
         </ion-button>
       </ion-buttons>
     </ion-item>
+
+    <ion-card-content>
+      {{event.location}}<br/>
+      Start date: {{event.startDate}}<br/>
+      End date: {{event.endDate}}
+    </ion-card-content>
   </ion-card>
 </ion-content>
 
