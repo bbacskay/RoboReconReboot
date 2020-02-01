@@ -51,10 +51,14 @@ export class MatchscoutingPage implements OnInit {
           questionType: 2,
           questionItems: [{
             value: 0,
-            itemText: 'NO',
+            itemText: 'No attempt',
           },
           {
             value: 1,
+            itemText: 'NO'
+          },
+          {
+            value: 2,
             itemText: 'YES'
           }
           ],
@@ -142,20 +146,39 @@ export class MatchscoutingPage implements OnInit {
       EndGame: [
         {
           id: 'EQ1',
-          questionText: 'What did they do in endgame?',
+          questionText: 'Did they climb?',
           questionType: 2,
           questionItems: [{
             value: 0,
-            itemText: 'None'
+            itemText: 'No attempt'
           },
           {
             value: 1,
-            itemText: 'Climb'
+            itemText: 'No'
           },
           {
             value: 2,
-            itemText: 'Climb with balance'
+            itemText: 'Yes'
           }
+          ],
+          answer: 0
+        },
+          {
+            id: 'EQ2',
+            questionText: 'Did they balance?',
+            questionType: 2,
+            questionItems: [{
+              value: 0,
+              itemText: 'No attempt'
+            },
+            {
+              value: 1,
+              itemText: 'No'
+            },
+            {
+              value: 2,
+              itemText: 'Yes'
+            }
           ],
           answer: 0
         }
