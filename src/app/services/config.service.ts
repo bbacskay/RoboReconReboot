@@ -10,6 +10,7 @@ export class ConfigService {
 
   public config: Config = {
     ownTeam: 3489,
+    selectedSeason: 2020,
     selectedEvent: 1
   }
 
@@ -59,6 +60,10 @@ export class ConfigService {
         {
           name: 'ownTeam',
           value: this.config.ownTeam
+        },
+        {
+          name: 'selectedSeason',
+          value: this.config.selectedSeason
         },
         {
           name: 'selectedEvent',

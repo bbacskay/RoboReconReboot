@@ -15,11 +15,20 @@
         <ion-input name="ownTeam" type="number" inputmode="number" [(ngModel)]="config.config.ownTeam"></ion-input>
       </ion-item>
       <ion-item class="item-multiple-inputs">
+        <ion-label>Season</ion-label>
+        <ion-select interface="popover" name="selectedSeason" [(ngModel)]="config.config.selectedSeason" (ionChange)="seasonChange()" >
+          <ion-select-option *ngFor="let season of seasons.seasonsList" [value]="+(season.year)">{{season.year}} {{season.gameTitle}}</ion-select-option>
+        </ion-select>
+        <ion-button [routerLink]="'/private/seasonadd'" [routerDirection]="'forward'" fill="clear" color="dark" size="small">
+          <ion-icon slot="end" name="add"></ion-icon>
+        </ion-button>
+      </ion-item>
+      <ion-item class="item-multiple-inputs">
         <ion-label>Event</ion-label>
         <ion-select interface="popover" name="selectedEvent" [(ngModel)]="config.config.selectedEvent">
           <ion-select-option *ngFor="let event of events.eventsList" [value]="+(event.id)">{{event.name}}</ion-select-option>
         </ion-select>
-        <ion-button [routerLink]="'/private/matchadd/1'" [routerDirection]="'forward'" fill="clear" color="dark" size="small">
+        <ion-button [routerLink]="'/private/eventadd'" [routerDirection]="'forward'" fill="clear" color="dark" size="small">
           <ion-icon slot="end" name="add"></ion-icon>
         </ion-button>
       </ion-item>
@@ -28,5 +37,8 @@
 </ion-content>
 
 <ion-footer>
-  <ion-button color="primary" expand="block" (click)="save()">Save configuration</ion-button>
+  <ion-button color="primary" expand="block" (click)="save()">
+    <ion-icon slot="start" name="save"></ion-icon>
+    Save configuration
+  </ion-button>
 </ion-footer>

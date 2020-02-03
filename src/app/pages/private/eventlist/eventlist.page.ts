@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventsService } from '../../../services/events.service';
 import { Event } from '../../../interfaces/event';
 import { AlertController } from '@ionic/angular';
+import { ConfigService } from '../../../services/config.service';
 
 @Component({
   selector: 'app-eventlist',
@@ -12,7 +13,7 @@ export class EventlistPage implements OnInit {
 
   public eventList: Event[]
 
-  constructor(public eventService: EventsService, private alertController: AlertController) { 
+  constructor(private configService: ConfigService, public eventService: EventsService, private alertController: AlertController) { 
     this.eventService.events.subscribe((data) => {
       this.eventList = data;
 
@@ -26,7 +27,7 @@ export class EventlistPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.eventService.load();
+    this.eventService.load(this.configService.config.selectedSeason);
   }
 
   private delete(eventId: number) {

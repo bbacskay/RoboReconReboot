@@ -12,6 +12,7 @@ import { MatchDataService } from './services/match-data.service';
 import { EventsService } from './services/events.service';
 import { ConfigService } from './services/config.service';
 import { ThemeService } from './services/theme.service';
+import { SeasonsService } from './services/seasons.service';
 
 const privatePages = [
   {
@@ -86,6 +87,7 @@ export class AppComponent {
     private authenticationService: AuthenticationService,
     private settingsService: SettingsService,
     private matchDataService: MatchDataService,
+    private seasonsService: SeasonsService,
     private eventsService: EventsService,
     private configService: ConfigService,
     private router: Router,
@@ -110,7 +112,10 @@ export class AppComponent {
               this.matchDataService.load(this.configService.config.selectedEvent, 'qm');
             });
 
-            this.eventsService.load();
+            this.seasonsService.load().then(() => {
+              this.eventsService.load(this.configService.config.selectedSeason);
+            });
+
             this.teamDataService.load();
 
           } else {
