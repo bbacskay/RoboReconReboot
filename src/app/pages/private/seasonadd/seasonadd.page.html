@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/private/seasonlist"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add new season</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-lg="5" size-md="7" size-sm="10">
+        <ion-list lines="full">
+          <ion-item>
+            <ion-label>Season Name</ion-label>
+            <ion-input slot="end" type="text" placeholder="Name" [(ngModel)]="newSeason.gameTitle"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Season Year</ion-label>
+            <ion-input slot="end" type="text" placeholder="Year" [(ngModel)]="newSeason.year"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-button (click)="add()" expand="block">Add
+    <ion-icon slot="start" name="add"></ion-icon>
+  </ion-button>
+</ion-footer>

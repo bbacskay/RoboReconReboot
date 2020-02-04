@@ -11,7 +11,7 @@ import { ConfigService } from '../../../services/config.service';
 })
 export class EventlistPage implements OnInit {
 
-  public eventList: Event[]
+  public eventList: Event[];
 
   constructor(private configService: ConfigService, public eventService: EventsService, private alertController: AlertController) { 
     this.eventService.events.subscribe((data) => {

@@ -47,6 +47,26 @@ const routes: Routes = [
   {
     path: 'eventedit/:eventid',
     loadChildren: () => import('./eventedit/eventedit.module').then( m => m.EventeditPageModule)
+  },
+  {
+    path: 'seasonlist',
+    loadChildren: () => import('./seasonlist/seasonlist.module').then( m => m.SeasonlistPageModule)
+  },
+  {
+    path: 'seasonadd',
+    loadChildren: () => import('./seasonadd/seasonadd.module').then( m => m.SeasonaddPageModule)
+  },
+  {
+    path: 'seasonedit/:seasonyear',
+    loadChildren: () => import('./seasonedit/seasonedit.module').then( m => m.SeasoneditPageModule)
+  },
+  {
+    path: 'seasonadd',
+    loadChildren: () => import('./seasonadd/seasonadd.module').then( m => m.SeasonaddPageModule)
+  },
+  {
+    path: 'seasonlist',
+    loadChildren: () => import('./seasonlist/seasonlist.module').then( m => m.SeasonlistPageModule)
   }
 ]
 
