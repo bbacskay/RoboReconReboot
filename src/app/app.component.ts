@@ -31,6 +31,11 @@ const privatePages = [
     icon: 'settings'
   },
   {
+    title: 'Season Manager',
+    url: '/private/seasonlist',
+    icon: 'calendar'
+  },
+  {
     title: 'Event Manager',
     url: '/private/eventlist',
     icon: 'pin'
