@@ -33,7 +33,7 @@ export class SeasoneditPage implements OnInit {
   }
 
   public update() {
-    this.seasons.update(this.seasonData);
+    this.seasons.update(this.seasonData, this.seasonId);
     this.router.navigate(['/private/seasonlist']);
   };
 

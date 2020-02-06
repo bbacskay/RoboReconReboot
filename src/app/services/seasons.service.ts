@@ -66,10 +66,11 @@ export class SeasonsService {
    * Update season
    * @param season 
    */
-  public update(season: Season) {
+  public update(season: Season, seasonId: number) {
     console.log('Update-season');
     console.log(season);
     this.http.post(this.appSettings.settings.value.apiPath + '/season/update.php', {
+      seasonId: seasonId,
       year: season.year,
       gameTitle: season.gameTitle
     }
@@ -89,6 +90,13 @@ export class SeasonsService {
    */
   delete( year: number ) {
     console.log("Delete season " + year + " requested.");
+    this.http.post(this.appSettings.settings.value.apiPath + '/season/delete.php', {
+      year: year
+    }
+    ).subscribe((result) => {
+      console.log(result);
+      this.load();
+    });
   }
 
 }
