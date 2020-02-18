@@ -168,10 +168,6 @@ export class MatchscoutingPage implements OnInit {
             questionText: 'Did they balance?',
             questionType: 2,
             questionItems: [{
-              value: 0,
-              itemText: 'No attempt'
-            },
-            {
               value: 1,
               itemText: 'No'
             },
@@ -180,7 +176,7 @@ export class MatchscoutingPage implements OnInit {
               itemText: 'Yes'
             }
           ],
-          answer: 0
+          answer: 1
         }
       ]
     }
