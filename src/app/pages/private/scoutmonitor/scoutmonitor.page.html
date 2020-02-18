@@ -5,12 +5,14 @@
     </ion-buttons>
     <ion-title>Monitoring - {{event}}</ion-title>
     <ion-buttons slot="end">
+      <ion-label>Auto Update </ion-label>
+      <ion-checkbox [(ngModel)]="autorefresh" (click)="clickAutoRefresh()"></ion-checkbox>
       <ion-spinner *ngIf="loading" name="lines"></ion-spinner>
       <ion-button (click)="refresh()" fill="solid" color="primary" shape="round">Refresh</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content padding>
+<ion-content class="ion-padding">
   <ion-card *ngFor="let match of matches">
     <ion-card-header color="medium">
       <ion-card-title>Match {{match.match_no}}</ion-card-title>

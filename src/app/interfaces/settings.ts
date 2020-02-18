@@ -2,5 +2,6 @@ export interface Settings {
     apiPath : string,
     scoutAlliance: any,
     scoutPosition: any,
-    darkMode: boolean
+    darkMode: boolean,
+    monitorRefreshTime: number
 }
