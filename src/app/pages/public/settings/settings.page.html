@@ -33,6 +33,10 @@
         <ion-label>Dark theme</ion-label>
         <ion-toggle name="darkTheme" [(ngModel)]="appSettings.darkMode" (ionChange)="updateTheme()"></ion-toggle>
       </ion-item>
+      <ion-item>
+        <ion-label>Monitor Auto Refresh Timer</ion-label>
+        <ion-input type="number" min="5" name="refreshtime" [(ngModel)]="appSettings.monitorRefreshTime"></ion-input>
+      </ion-item>
     </ion-list>
   </form>
 </ion-content>

@@ -3,6 +3,7 @@ import { MonitorMatchData, MonitorQuestionItem } from '../../../interfaces/match
 import { MatchscoutingDataService } from '../../../services/matchscouting-data.service';
 import { EventsService } from '../../../services/events.service';
 import { ConfigService } from '../../../services/config.service';
+import { SettingsService } from '../../../services/settings.service';
 
 @Component({
   selector: 'app-scoutmonitor',
@@ -14,10 +15,13 @@ export class ScoutmonitorPage implements OnInit {
   public matches: MonitorMatchData[] = [];
   public event: string;
   public loading: boolean = false;
+  public autorefresh: boolean = false;
+  private intervalId: any;
 
   constructor(private scoutingData: MatchscoutingDataService,
               private config: ConfigService,
-              private eventlist: EventsService
+              private eventlist: EventsService,
+              private settingsService: SettingsService
               ) { 
     
     this.scoutingData.monitorData.subscribe((data) => {
@@ -51,6 +55,10 @@ export class ScoutmonitorPage implements OnInit {
   ngOnInit() {
   }
 
+  ngOnDestroy() {
+    this.clearAutoRefresh();
+  }
+
   public getClass(value: boolean): string {
     if (value) {
       return "qOk";
@@ -63,6 +71,30 @@ export class ScoutmonitorPage implements OnInit {
   public refresh() {
     this.loading = true;
     this.scoutingData.monitor();
+  }
+
+  public callbackRefresh(data: ScoutmonitorPage) {
+    data.refresh();
+  }
+
+  public setAutoRefresh() {
+    console.log("setAutoRefresh was called");
+    this.intervalId=setInterval(this.callbackRefresh, this.settingsService.settings.value.monitorRefreshTime * 1000, this);
+  }
+
+  public clearAutoRefresh(){
+    console.log("clearAutoRefresh was called");
+    clearInterval(this.intervalId);
+  }
+
+  public clickAutoRefresh() {
+    console.log("clickAutoRefresh was called");
+    console.log("autorefresh=" + this.autorefresh);
+    if (this.autorefresh==false){
+      this.setAutoRefresh();
+    }else {
+      this.clearAutoRefresh();
+    }
   }
 
 }

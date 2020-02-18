@@ -12,7 +12,8 @@ export class SettingsService {
     apiPath: 'http://scoutpi/api',
     scoutAlliance: 'blue',
     scoutPosition: 'left',
-    darkMode: false
+    darkMode: false,
+    monitorRefreshTime: 30
   });
 
   constructor(private storage: Storage) {
@@ -32,6 +33,9 @@ export class SettingsService {
 
   save(data:Settings): Promise<boolean> {
     return new Promise((resolve) => {
+      if(data.monitorRefreshTime<=5){
+        data.monitorRefreshTime=30;
+      }
       this.storage.set('settings',data).then(() => {
         this.settings.next(data);
         resolve(true);
