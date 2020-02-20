@@ -92,6 +92,7 @@ export class ScoutmonitorPage implements OnInit {
     console.log("autorefresh=" + this.autorefresh);
     if (this.autorefresh==false){
       this.setAutoRefresh();
+      this.refresh();
     }else {
       this.clearAutoRefresh();
     }
