@@ -66,7 +66,7 @@
     <ion-row justify-contex-center>
       <ion-col size="3">
         <ion-item *ngFor="let question of questions.Autonomous; let i=index;">
-          <ion-label position="stacked" text-wrap>{{question.questionText}}</ion-label>
+          <ion-label position="stacked" class="ion-text-wrap">{{question.questionText}}</ion-label>
           <!-- Type 0 = text input field -->
           <ion-input *ngIf="question.questionType === 0" [(ngModel)]="question.answer" type="text"
             name="{{question.id}}"></ion-input>
@@ -89,7 +89,7 @@
       </ion-col>
       <ion-col size="3">
         <ion-item *ngFor="let question of questions.Teleop; let i=index;">
-          <ion-label position="stacked" text-wrap>{{question.questionText}}</ion-label>
+          <ion-label position="stacked" class="ion-text-wrap">{{question.questionText}}</ion-label>
           <!-- Type 0 = text input field -->
           <ion-input *ngIf="question.questionType === 0" [(ngModel)]="question.answer" type="text"
             name="{{question.id}}"></ion-input>
@@ -112,7 +112,7 @@
       </ion-col>
       <ion-col size="3">
         <ion-item *ngFor="let question of questions.EndGame; let i=index;">
-          <ion-label position="stacked" text-wrap>{{question.questionText}}</ion-label>
+          <ion-label position="stacked" class="ion-text-wrap">{{question.questionText}}</ion-label>
           <!-- Type 0 = text input field -->
           <ion-input *ngIf="question.questionType === 0" [(ngModel)]="question.answer" type="text"
             name="{{question.id}}"></ion-input>
@@ -141,7 +141,7 @@
         <div class="fixed" scrollY="true">
           <ion-list>
             <ion-item *ngFor="let note of previousMatchNotes">
-              <ion-label text-wrap>
+              <ion-label class="ion-text-wrap">
                 <h3>Match - {{note.matchNo}}</h3>
                 <p>{{note.note}}</p>
               </ion-label>
