@@ -65,73 +65,79 @@
     </ion-row>
     <ion-row justify-contex-center>
       <ion-col size="3">
-        <ion-item *ngFor="let question of questions.Autonomous; let i=index;">
-          <ion-label position="stacked" text-wrap>{{question.questionText}}</ion-label>
-          <!-- Type 0 = text input field -->
-          <ion-input *ngIf="question.questionType === 0" [(ngModel)]="question.answer" type="text"
-            name="{{question.id}}"></ion-input>
-          <!-- Type 1 = number input with +/- buttons -->
-          <ion-button slot="start" *ngIf="question.questionType === 1" (click)="valueMinus(0,i)" size="default">
-            <ion-icon name="remove-circle"></ion-icon>
-          </ion-button>
-          <ion-input *ngIf="question.questionType === 1" [(ngModel)]="question.answer" name="{{question.id}}"
-            type="text" size="3"></ion-input>
-          <ion-button slot="end" *ngIf="question.questionType === 1" (click)="valuePlus(0,i)" size="default">
-            <ion-icon name="add-circle"></ion-icon>
-          </ion-button>
-          <!-- Type 2 = selection list -->
-          <ion-select *ngIf="question.questionType === 2" [(ngModel)]="question.answer" name="{{question.id}}"
-            interface="popover">
-            <ion-select-option *ngFor="let questionItem of question.questionItems" value="{{questionItem.value}}" [selected]="questionItem.value==question.answer">
-              {{questionItem.itemText}}</ion-select-option>
-          </ion-select>
-        </ion-item>
+        <ion-list *ngFor="let question of questions.Autonomous; let i=index;">
+          <ion-list-header class="ion-text-wrap">{{question.questionText}}</ion-list-header>
+          <ion-item>
+            <!-- Type 0 = text input field -->
+            <ion-input *ngIf="question.questionType === 0" [(ngModel)]="question.answer" type="text"
+              name="{{question.id}}"></ion-input>
+            <!-- Type 1 = number input with +/- buttons -->
+            <ion-button slot="start" *ngIf="question.questionType === 1" (click)="valueMinus(0,i)" size="default">
+              <ion-icon name="remove-circle"></ion-icon>
+            </ion-button>
+            <ion-input *ngIf="question.questionType === 1" [(ngModel)]="question.answer" name="{{question.id}}"
+              type="number" min="0" class="ion-text-center"></ion-input>
+            <ion-button slot="end" *ngIf="question.questionType === 1" (click)="valuePlus(0,i)" size="default">
+              <ion-icon name="add-circle"></ion-icon>
+            </ion-button>
+            <!-- Type 2 = selection list -->
+            <ion-select *ngIf="question.questionType === 2" [(ngModel)]="question.answer" name="{{question.id}}"
+              interface="popover">
+              <ion-select-option *ngFor="let questionItem of question.questionItems" value="{{questionItem.value}}" [selected]="questionItem.value==question.answer">
+                {{questionItem.itemText}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
       </ion-col>
       <ion-col size="3">
-        <ion-item *ngFor="let question of questions.Teleop; let i=index;">
-          <ion-label position="stacked" text-wrap>{{question.questionText}}</ion-label>
-          <!-- Type 0 = text input field -->
-          <ion-input *ngIf="question.questionType === 0" [(ngModel)]="question.answer" type="text"
-            name="{{question.id}}"></ion-input>
-          <!-- Type 1 = number input with +/- buttons -->
-          <ion-button slot="start" *ngIf="question.questionType === 1" (click)="valueMinus(1,i)" size="default">
-            <ion-icon name="remove-circle"></ion-icon>
-          </ion-button>
-          <ion-input *ngIf="question.questionType === 1" [(ngModel)]="question.answer" name="{{question.id}}"
-            type="number" min="0"></ion-input>
-          <ion-button slot="end" *ngIf="question.questionType === 1" (click)="valuePlus(1,i)" size="default">
-            <ion-icon name="add-circle"></ion-icon>
-          </ion-button>
-          <!-- Type 2 = selection list -->
-          <ion-select *ngIf="question.questionType === 2" [(ngModel)]="question.answer" name="{{question.id}}"
-            interface="popover">
-            <ion-select-option *ngFor="let questionItem of question.questionItems" value="{{questionItem.value}}">
-              {{questionItem.itemText}}</ion-select-option>
-          </ion-select>
-        </ion-item>
+        <ion-list *ngFor="let question of questions.Teleop; let i=index;">
+          <ion-list-header class="ion-text-wrap">{{question.questionText}}</ion-list-header>
+          <ion-item>
+            <!-- Type 0 = text input field -->
+            <ion-input *ngIf="question.questionType === 0" [(ngModel)]="question.answer" type="text"
+              name="{{question.id}}"></ion-input>
+            <!-- Type 1 = number input with +/- buttons -->
+            <ion-button *ngIf="question.questionType === 1" (click)="valueMinus(1,i)" size="default">
+              <ion-icon name="remove-circle"></ion-icon>
+            </ion-button>
+            <ion-input *ngIf="question.questionType === 1" [(ngModel)]="question.answer" name="{{question.id}}"
+              type="number" min="0" class="ion-text-center"></ion-input>
+            <ion-button *ngIf="question.questionType === 1" (click)="valuePlus(1,i)" size="default">
+              <ion-icon name="add-circle"></ion-icon>
+            </ion-button>
+            <!-- Type 2 = selection list -->
+            <ion-select *ngIf="question.questionType === 2" [(ngModel)]="question.answer" name="{{question.id}}"
+              interface="popover">
+              <ion-select-option *ngFor="let questionItem of question.questionItems" value="{{questionItem.value}}">
+                {{questionItem.itemText}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
       </ion-col>
       <ion-col size="3">
-        <ion-item *ngFor="let question of questions.EndGame; let i=index;">
-          <ion-label position="stacked" text-wrap>{{question.questionText}}</ion-label>
-          <!-- Type 0 = text input field -->
-          <ion-input *ngIf="question.questionType === 0" [(ngModel)]="question.answer" type="text"
-            name="{{question.id}}"></ion-input>
-          <!-- Type 1 = number input with +/- buttons -->
-          <ion-button slot="start" *ngIf="question.questionType === 1" (click)="valueMinus(2,i)" size="default">
-            <ion-icon name="remove-circle"></ion-icon>
-          </ion-button>
-          <ion-input *ngIf="question.questionType === 1" [(ngModel)]="question.answer" name="{{question.id}}"
-            type="number" min="0"></ion-input>
-          <ion-button slot="end" *ngIf="question.questionType === 1" (click)="valuePlus(2,i)" size="default">
-            <ion-icon name="add-circle"></ion-icon>
-          </ion-button>
-          <!-- Type 2 = selection list -->
-          <ion-select *ngIf="question.questionType === 2" [(ngModel)]="question.answer" name="{{question.id}}"
-            interface="popover">
-            <ion-select-option *ngFor="let questionItem of question.questionItems" value="{{questionItem.value}}">
-              {{questionItem.itemText}}</ion-select-option>
-          </ion-select>
+        <ion-list *ngFor="let question of questions.EndGame; let i=index;">
+          <ion-list-header class="ion-text-wrap">{{question.questionText}}</ion-list-header>
+          <ion-item>
+            <!-- Type 0 = text input field -->
+            <ion-input *ngIf="question.questionType === 0" [(ngModel)]="question.answer" type="text"
+              name="{{question.id}}"></ion-input>
+            <!-- Type 1 = number input with +/- buttons -->
+            <ion-button slot="start" *ngIf="question.questionType === 1" (click)="valueMinus(2,i)" size="default">
+              <ion-icon name="remove-circle"></ion-icon>
+            </ion-button>
+            <ion-input *ngIf="question.questionType === 1" [(ngModel)]="question.answer" name="{{question.id}}"
+              type="number" min="0" class="ion-text-center"></ion-input>
+            <ion-button slot="end" *ngIf="question.questionType === 1" (click)="valuePlus(2,i)" size="default">
+              <ion-icon name="add-circle"></ion-icon>
+            </ion-button>
+            <!-- Type 2 = selection list -->
+            <ion-select *ngIf="question.questionType === 2" [(ngModel)]="question.answer" name="{{question.id}}"
+              interface="popover">
+              <ion-select-option *ngFor="let questionItem of question.questionItems" value="{{questionItem.value}}">
+                {{questionItem.itemText}}</ion-select-option>
+            </ion-select>
         </ion-item>
+        </ion-list>
       </ion-col>
       <ion-col>
         <ion-item>
