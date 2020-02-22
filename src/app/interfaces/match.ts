@@ -35,6 +35,12 @@ export interface QuestionOptionItem {
     itemText: String;
 }
 
+export interface Questions {
+    Autonomous: QuestionItem[],
+    Teleop: QuestionItem[],
+    EndGame: QuestionItem[]
+};
+
 export interface ScoutingData {
     id: number;
     match_id: number;

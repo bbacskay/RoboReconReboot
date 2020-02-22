@@ -13,6 +13,7 @@ import { EventsService } from './services/events.service';
 import { ConfigService } from './services/config.service';
 import { ThemeService } from './services/theme.service';
 import { SeasonsService } from './services/seasons.service';
+import { QuestionsService } from './services/questions.service';
 
 const privatePages = [
   {
@@ -91,6 +92,7 @@ export class AppComponent {
     private teamDataService: TeamDataService,
     private authenticationService: AuthenticationService,
     private settingsService: SettingsService,
+    private questionsService: QuestionsService,
     private matchDataService: MatchDataService,
     private seasonsService: SeasonsService,
     private eventsService: EventsService,
@@ -114,6 +116,7 @@ export class AppComponent {
             this.appPages = privatePages;
 
             this.configService.load().then(() => {
+              this.questionsService.load();
               this.matchDataService.load(this.configService.config.selectedEvent, 'qm');
             });
 

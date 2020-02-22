@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QuestionItem, QuestionOptionItem, ScoutingData, ResponseData, PrevNoteItem, MatchListItem } from '../../../interfaces/match';
+import { QuestionItem, QuestionOptionItem, ScoutingData, ResponseData, PrevNoteItem, MatchListItem, Questions } from '../../../interfaces/match';
 import { Team } from '../../../interfaces/team';
 import { Scout } from '../../../interfaces/scout';
 import { ScoutDataService } from '../../../services/scout-data.service';
@@ -8,6 +8,7 @@ import { MatchscoutingDataService } from '../../../services/matchscouting-data.s
 import { MatchDataService } from '../../../services/match-data.service';
 import { ConfigService } from '../../../services/config.service';
 import { AlertService } from '../../../services/alert.service';
+import { QuestionsService } from '../../../services/questions.service';
 
 
 @Component({
@@ -38,155 +39,19 @@ export class MatchscoutingPage implements OnInit {
 
   public displayQuestions: boolean = false;
 
-  questions: {
-    Autonomous: QuestionItem[],
-    Teleop: QuestionItem[],
-    EndGame: QuestionItem[]
-  } = {
-
-      Autonomous: [
-        {
-          id: 'AQ1',
-          questionText: 'Did they cross the auto line?',
-          questionType: 2,
-          questionItems: [{
-            value: 1,
-            itemText: 'No'
-          },
-          {
-            value: 2,
-            itemText: 'Yes'
-          }
-          ],
-          answer: 0
-        },
-        {
-          id: 'AQ2',
-          questionText: 'How many Power Cells did they get in the low port?',
-          questionType: 1,
-          questionItems: [],
-          answer: 0
-        },
-        {
-          id: 'AQ3',
-          questionText: 'How many Power Cells did they get in the high port?',
-          questionType: 1,
-          questionItems: [],
-          answer: 0,
-        },
-      ],
-
-      Teleop: [{
-        id: 'TQ1',
-        questionText: 'How many Power Cells did they get in the low port?',
-        questionType: 1,
-        questionItems: [],
-        answer: 0
-      },
-      {
-        id: 'TQ2',
-        questionText: 'How many Power Cells did they get in the high port?',
-        questionType: 1,
-        questionItems: [],
-        answer: 0
-      },
-      {
-        id: 'TQ3',
-        questionText: 'Did they do control panel level 2?',
-        questionType: 2,
-        questionItems: [
-          {
-            value: 0,
-            itemText: 'N/A'
-          },
-          {
-            value: 1,
-            itemText: 'NO'
-          },
-          {
-            value: 2,
-            itemText: 'YES'
-          }
-        ],
-        answer: 0
-      },
-      {
-        id: 'TQ4',
-        questionText: 'Did they do control panel level 3?',
-        questionType: 2,
-        questionItems: [
-          {
-            value: 0,
-            itemText: 'N/A'
-          },
-          {
-            value: 1,
-            itemText: 'NO'
-          },
-          {
-            value: 2,
-            itemText: 'YES'
-          }
-        ],
-        answer: 0
-      },
-      {
-        id: 'TQ5',
-        questionText: 'How many times did they defend?',
-        questionType: 1,
-        questionItems: [],
-        answer: 0
-      }
-      ],
-
-      EndGame: [
-        {
-          id: 'EQ1',
-          questionText: 'Did they climb?',
-          questionType: 2,
-          questionItems: [{
-            value: 0,
-            itemText: 'No attempt'
-          },
-          {
-            value: 1,
-            itemText: 'No'
-          },
-          {
-            value: 2,
-            itemText: 'Yes'
-          }
-          ],
-          answer: 0
-        },
-          {
-            id: 'EQ2',
-            questionText: 'Did they balance?',
-            questionType: 2,
-            questionItems: [{
-              value: 1,
-              itemText: 'No'
-            },
-            {
-              value: 2,
-              itemText: 'Yes'
-            }
-          ],
-          answer: 1
-        }
-      ]
-    }
+  public questions: Questions;
 
 
 
   constructor(
-    public scoutData: ScoutDataService,
-    private teamDataService: TeamDataService,
-    private scoutingData: MatchscoutingDataService,
-    private matchData: MatchDataService,
-    private configService: ConfigService,
-    private alertService: AlertService
-  ) {
+              public scoutData: ScoutDataService,
+              private teamDataService: TeamDataService,
+              public questionsService: QuestionsService,
+              private scoutingData: MatchscoutingDataService,
+              private matchData: MatchDataService,
+              private configService: ConfigService,
+              private alertService: AlertService 
+            ) {
     this.teamDataService.teams.subscribe((data) => {
       this.teams = data;
     });
@@ -206,6 +71,8 @@ export class MatchscoutingPage implements OnInit {
       //this.selectedMatch = 0;
       this.onChangeMatch();
     });
+
+    this.questions = this.questionsService.questions;
 
     // Create list for the match numbers
     // var i: number;
