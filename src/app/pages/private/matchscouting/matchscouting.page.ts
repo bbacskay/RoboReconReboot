@@ -50,16 +50,12 @@ export class MatchscoutingPage implements OnInit {
           questionText: 'Did they cross the auto line?',
           questionType: 2,
           questionItems: [{
-            value: 0,
-            itemText: 'No attempt',
-          },
-          {
             value: 1,
-            itemText: 'NO'
+            itemText: 'No'
           },
           {
             value: 2,
-            itemText: 'YES'
+            itemText: 'Yes'
           }
           ],
           answer: 0
