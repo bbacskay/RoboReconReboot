@@ -53,8 +53,8 @@ export class EventsService {
         baEventKey: event.baEventKey,
         name: event.name,
         location: event.location,
-        startDate: event.startDate,
-        endDate: event.endDate
+        startDate: event.startDate.toString().split('T')[0],
+        endDate: event.endDate.toString().split('T')[0]
       }
       ).subscribe((result) => {
         console.log(result);
