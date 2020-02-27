@@ -70,10 +70,19 @@ export class EventsService {
 
   /**
    * Delete event
-   * @param {number} id
+   * @param {number} eventId
    */
-  delete( id: number) {
-    console.log("Delete event " + id + " requested.");
+  delete( eventId: number) {
+    console.log("Delete event " + eventId + " requested.");
+
+    this.http.post(this.appSettings.settings.value.apiPath + '/event/delete.php', {
+      id: eventId
+    }
+    ).subscribe((result) => {
+      console.log(result);
+      this.load(this.configService.config.selectedSeason);
+    });
+
   }
 
   public update(event: Event) {
