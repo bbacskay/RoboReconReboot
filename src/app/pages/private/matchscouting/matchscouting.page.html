@@ -22,7 +22,7 @@
       </ion-col>
       <ion-col size="2">
         <ion-item lines="none">
-          <ion-label>Team Number</ion-label>
+          <ion-label>{{alliance}} Team No.</ion-label>
           <ion-select name="TeamNum" interface="popover" [(ngModel)]="TeamNum">
             <ion-select-option></ion-select-option>
             <ion-select-option *ngFor="let team of matchTeamsList" value="{{team}}">{{team}}</ion-select-option>

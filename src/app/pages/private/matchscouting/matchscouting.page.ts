@@ -9,6 +9,7 @@ import { MatchDataService } from '../../../services/match-data.service';
 import { ConfigService } from '../../../services/config.service';
 import { AlertService } from '../../../services/alert.service';
 import { QuestionsService } from '../../../services/questions.service';
+import { SettingsService } from '../../../services/settings.service';
 
 
 @Component({
@@ -41,6 +42,7 @@ export class MatchscoutingPage implements OnInit {
 
   public questions: Questions;
 
+  public alliance: String;
 
 
   constructor(
@@ -49,6 +51,7 @@ export class MatchscoutingPage implements OnInit {
               public questionsService: QuestionsService,
               private scoutingData: MatchscoutingDataService,
               private matchData: MatchDataService,
+              private settingsService: SettingsService,
               private configService: ConfigService,
               private alertService: AlertService 
             ) {
@@ -95,6 +98,8 @@ export class MatchscoutingPage implements OnInit {
   ionViewWillEnter() {
     this.scoutData.load();
     this.matchData.load(this.configService.config.selectedEvent, 'qm');  // TODO: get eventid from configuration
+    this.alliance = this.settingsService.settings.value.scoutAlliance.toString().toUpperCase();
+    
   }
 
   public onChangeMatch() {
@@ -102,14 +107,19 @@ export class MatchscoutingPage implements OnInit {
       this.MatchId = this.matchesArr[this.selectedMatch].matchId;
       this.MatchNum = this.matchesArr[this.selectedMatch].matchNo;
 
-      this.matchTeamsList = [
-        this.matchesArr[this.selectedMatch].blue1TeamNumber,
-        this.matchesArr[this.selectedMatch].blue2TeamNumber,
-        this.matchesArr[this.selectedMatch].blue3TeamNumber,
-        this.matchesArr[this.selectedMatch].red1TeamNumber,
-        this.matchesArr[this.selectedMatch].red2TeamNumber,
-        this.matchesArr[this.selectedMatch].red3TeamNumber
-      ];
+      if ( this.settingsService.settings.value.scoutAlliance == 'red') {
+        this.matchTeamsList = [
+          this.matchesArr[this.selectedMatch].red1TeamNumber,
+          this.matchesArr[this.selectedMatch].red2TeamNumber,
+          this.matchesArr[this.selectedMatch].red3TeamNumber
+        ];
+      } else {
+        this.matchTeamsList = [
+          this.matchesArr[this.selectedMatch].blue1TeamNumber,
+          this.matchesArr[this.selectedMatch].blue2TeamNumber,
+          this.matchesArr[this.selectedMatch].blue3TeamNumber
+        ];
+      }
       this.matchTeamsList.sort(function (a, b) { return a - b });
 
       console.log("Match changed. SelectedMatch:" + this.selectedMatch + " MatchNo:" + this.MatchNum + "  MatchId:" + this.MatchId);
