@@ -22,133 +22,322 @@ export class QuestionsService {
       Autonomous: [
         {
           id: 'AQ1',
-          questionText: 'Did they cross the auto line?',
+          questionText: 'Cargo loaded at start of match?',
           questionType: 2,
-          questionItems: [{
-            value: 1,
-            itemText: 'No'
-          },
-          {
-            value: 2,
-            itemText: 'Yes'
-          }
+          questionItems: [
+            {
+              value: 0,
+              itemText: 'No'
+            },
+            {
+              value: 1,
+              itemText: 'Yes'
+            }
           ],
           answer: 0
-        },
+          },
         {
           id: 'AQ2',
-          questionText: 'How many Power Cells did they get in the low port?',
-          questionType: 1,
-          questionItems: [],
+          questionText: 'Fully exited the tarmac at least once?',
+          questionType: 2,
+          questionItems: [
+            {
+              value: 0,
+              itemText: 'No'
+            },
+            {
+              value: 1,
+              itemText: 'Yes'
+            }
+          ],
           answer: 0
-        },
+          },
         {
           id: 'AQ3',
-          questionText: 'How many Power Cells did they get in the high port?',
+          questionText: 'Cargo in low goal?',
           questionType: 1,
-          questionItems: [],
-          answer: 0,
-        },
+          questionItems: [
+          ],
+          answer: 0
+          },
+        {
+          id: 'AQ4',
+          questionText: 'Cargo in high goal?',
+          questionType: 1,
+          questionItems: [
+          ],
+          answer: 0
+          },
+        {
+          id: 'AQ5',
+          questionText: 'Cargo missed low goal?',
+          questionType: 1,
+          questionItems: [
+          ],
+          answer: 0
+          },
+        {
+          id: 'AQ6',
+          questionText: 'Cargo missed high goal?',
+          questionType: 1,
+          questionItems: [
+          ],
+          answer: 0
+          },
+        {
+          id: 'AQ7',
+          questionText: 'Cargo in low goal from human?',
+          questionType: 1,
+          questionItems: [
+          ],
+          answer: 0
+          },
+        {
+          id: 'AQ8',
+          questionText: 'Cargo in high goal from human?',
+          questionType: 1,
+          questionItems: [
+          ],
+          answer: 0
+          },
+        {
+          id: 'AQ9',
+          questionText: 'Cargo missed from human?',
+          questionType: 1,
+          questionItems: [
+          ],
+          answer: 0
+          }
       ],
 
-      Teleop: [{
-        id: 'TQ1',
-        questionText: 'How many Power Cells did they get in the low port?',
-        questionType: 1,
-        questionItems: [],
-        answer: 0
-      },
-      {
-        id: 'TQ2',
-        questionText: 'How many Power Cells did they get in the high port?',
-        questionType: 1,
-        questionItems: [],
-        answer: 0
-      },
-      {
-        id: 'TQ3',
-        questionText: 'Did they do control panel level 2?',
-        questionType: 2,
-        questionItems: [
-          {
-            value: 0,
-            itemText: 'N/A'
+      Teleop: [
+        {
+          id: 'TQ1',
+          questionText: 'Cargo in low goal?',
+          questionType: 1,
+          questionItems: [
+          ],
+          answer: 0
           },
-          {
-            value: 1,
-            itemText: 'NO'
+        {
+          id: 'TQ2',
+          questionText: 'Cargo in high goal?',
+          questionType: 1,
+          questionItems: [
+          ],
+          answer: 0
           },
-          {
-            value: 2,
-            itemText: 'YES'
-          }
-        ],
-        answer: 0
-      },
-      {
-        id: 'TQ4',
-        questionText: 'Did they do control panel level 3?',
-        questionType: 2,
-        questionItems: [
-          {
-            value: 0,
-            itemText: 'N/A'
+        {
+          id: 'TQ3',
+          questionText: 'Cargo missed low goal?',
+          questionType: 1,
+          questionItems: [
+          ],
+          answer: 0
           },
-          {
-            value: 1,
-            itemText: 'NO'
+        {
+          id: 'TQ4',
+          questionText: 'Cargo missed high goal?',
+          questionType: 1,
+          questionItems: [
+          ],
+          answer: 0
           },
-          {
-            value: 2,
-            itemText: 'YES'
-          }
-        ],
-        answer: 0
-      },
-      {
-        id: 'TQ5',
-        questionText: 'How many times did they defend?',
-        questionType: 1,
-        questionItems: [],
-        answer: 0
-      }
+        {
+          id: 'TQ5',
+          questionText: 'Intake method?',
+          questionType: 2,
+          questionItems: [
+            {
+              value: 0,
+              itemText: 'Toaster'
+            },
+            {
+              value: 1,
+              itemText: 'Floor'
+            },
+            {
+              value: 2,
+              itemText: 'Terminal'
+            },
+            {
+              value: 3,
+              itemText: 'Both'
+            }
+          ],
+          answer: 0
+          },
+        {
+          id: 'TQ6',
+          questionText: 'Max cargo ever in robot?',
+          questionType: 2,
+          questionItems: [
+            {
+              value: 0,
+              itemText: 'Toaster'
+            },
+            {
+              value: 1,
+              itemText: '1'
+            },
+            {
+              value: 2,
+              itemText: '2'
+            },
+            {
+              value: 3,
+              itemText: '>2'
+            }
+          ],
+          answer: 0
+          },
+        {
+          id: 'TQ7',
+          questionText: 'Wrong color cargo disposal?',
+          questionType: 2,
+          questionItems: [
+            {
+              value: 0,
+              itemText: 'No'
+            },
+            {
+              value: 1,
+              itemText: 'Intake'
+            },
+            {
+              value: 2,
+              itemText: 'Shooter'
+            },
+            {
+              value: 3,
+              itemText: 'Other'
+            }
+          ],
+          answer: 0
+          },
+        {
+          id: 'TQ8',
+          questionText: 'How many times did they defend?',
+          questionType: 1,
+          questionItems: [
+          ],
+          answer: 0
+          },
+        {
+          id: 'TQ9',
+          questionText: 'How many fouls charged against this robot?',
+          questionType: 1,
+          questionItems: [
+          ],
+          answer: 0
+          },
       ],
 
       EndGame: [
         {
           id: 'EQ1',
-          questionText: 'Did they climb?',
+          questionText: 'Has climber?',
           questionType: 2,
-          questionItems: [{
-            value: 0,
-            itemText: 'No attempt'
-          },
-          {
-            value: 1,
-            itemText: 'No'
-          },
-          {
-            value: 2,
-            itemText: 'Yes'
-          }
+          questionItems: [
+            {
+              value: 0,
+              itemText: 'No'
+            },
+            {
+              value: 1,
+              itemText: 'Yes'
+            },
           ],
           answer: 0
-        },
-          {
-            id: 'EQ2',
-            questionText: 'Did they balance?',
-            questionType: 2,
-            questionItems: [{
+          },
+        {
+          id: 'EQ2',
+          questionText: 'Low climb?',
+          questionType: 2,
+          questionItems: [
+            {
+              value: 0,
+              itemText: 'No attempt'
+            },
+            {
               value: 1,
-              itemText: 'No'
+              itemText: 'Fail'
             },
             {
               value: 2,
               itemText: 'Yes'
             }
           ],
-          answer: 1
-        }
+          answer: 0
+          },
+        {
+          id: 'EQ3',
+          questionText: 'Mid climb?',
+          questionType: 2,
+          questionItems: [
+            {
+              value: 0,
+              itemText: 'No attempt'
+            },
+            {
+              value: 1,
+              itemText: 'Fail'
+            },
+            {
+              value: 2,
+              itemText: 'Yes'
+            }
+          ],
+          answer: 0
+          },
+        {
+          id: 'EQ4',
+          questionText: 'High climb?',
+          questionType: 2,
+          questionItems: [
+            {
+              value: 0,
+              itemText: 'No attempt'
+            },
+            {
+              value: 1,
+              itemText: 'Fail'
+            },
+            {
+              value: 2,
+              itemText: 'Yes'
+            }
+          ],
+          answer: 0
+          },
+        {
+          id: 'EQ5',
+          questionText: 'Traversal climb?',
+          questionType: 2,
+          questionItems: [
+            {
+              value: 0,
+              itemText: 'No attempt'
+            },
+            {
+              value: 1,
+              itemText: 'Fail'
+            },
+            {
+              value: 2,
+              itemText: 'Yes'
+            }
+          ],
+          answer: 0
+          },
+        {
+          id: 'EQ6',
+          questionText: 'Length of time to climb in seconds?',
+          questionType: 1,
+          questionItems: [
+          ],
+          answer: 0
+          }
       ]
     };
 
